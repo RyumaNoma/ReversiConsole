@@ -1,8 +1,5 @@
 #include "Node.hpp"
-//Point action_;
-//double w_;
-//int n_;
-//std::vector<Node*> children_;
+
 Node::Node()
 	: action_()
 	, w_(0)
