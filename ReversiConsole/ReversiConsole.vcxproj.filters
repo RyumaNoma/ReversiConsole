@@ -57,6 +57,9 @@
     <ClInclude Include="src\BitBoardUnitTest.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\Node.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Debug\Debug.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="src\Point\Point.cpp">
       <Filter>ソース ファイル\Point</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Node.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
