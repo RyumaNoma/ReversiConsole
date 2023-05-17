@@ -13,5 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\Allocator">
+      <UniqueIdentifier>{173857a5-48c5-4f92-933e-d9e9a721bcc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Timer">
+      <UniqueIdentifier>{2cecf727-a5d3-4d85-96dc-8386b0c566b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Debug">
+      <UniqueIdentifier>{b0d7bbd0-55e4-45b6-ab4e-667ca0276c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Point">
+      <UniqueIdentifier>{cc9da47e-de1e-4298-ae77-ce219ab3449b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Allocator\Allocator.hpp">
+      <Filter>ソース ファイル\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Allocator\AllocatorDefine.hpp">
+      <Filter>ソース ファイル\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug\Debug.hpp">
+      <Filter>ソース ファイル\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Timer\Timer.hpp">
+      <Filter>ソース ファイル\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BitBoard.hpp">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BitBoardUnitTest.hpp">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Point\Point.hpp">
+      <Filter>ソース ファイル\Point</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Debug\Debug.cpp">
+      <Filter>ソース ファイル\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Timer\Timer.cpp">
+      <Filter>ソース ファイル\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BitBoard.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BitBoard_BitOperation.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BitBoardUnitTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Point\Point.cpp">
+      <Filter>ソース ファイル\Point</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
