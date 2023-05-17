@@ -71,6 +71,20 @@ BitBoard::Board BitBoard::LegalPublic() const
 	return Legal(board_[0], board_[1]);
 }
 
+std::vector<Point> BitBoard::LegalActions() const
+{
+	std::vector<Point> actions;
+	Board legal = Legal(board_[0], board_[1]);
+	for (int i = 0; i < 64; ++i)
+	{
+		if ((legal >> i) & 1)
+		{
+			actions.emplace_back(i % 8, i / 8);
+		}
+	}
+	return actions;
+}
+
 void BitBoard::Swap()
 {
 	std::swap(board_[0], board_[1]);

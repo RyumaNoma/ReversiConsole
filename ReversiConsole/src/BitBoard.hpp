@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <iostream>
 #include <functional>
+#include <vector>
 
 class Point;
 
@@ -113,6 +114,12 @@ public:
 	/// <param name="player_side">自分</param>
 	/// <returns>合法手を1とする盤面</returns>
 	Board LegalPublic() const;
+
+	/// <summary>
+	/// 自分側プレイヤーの合法手を列挙する
+	/// </summary>
+	/// <returns>自分側プレイヤーの合法手</returns>
+	std::vector<Point> LegalActions() const;
 
 	/// <summary>
 	/// 盤面の自分側と敵側のコマを入れ替える
