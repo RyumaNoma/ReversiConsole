@@ -20,3 +20,16 @@ Node::Node(const Node& node)
 	, children_(node.children_)
 {
 }
+
+double Node::UCB1(int N) const
+{
+	return w_ / n_ + std::sqrt(2 * log(N) / n_);
+}
+
+double Node::UCB1_Tuned(int N) const
+{
+	const double mean = w_ / n_;
+	const double dispersion = ww_ / n_ - mean * mean;
+	const double V = dispersion * std::sqrt(2 * log(N) / n_);
+	return mean + std::sqrt(log(N) / n_ * std::min(0.25, V));
+}
