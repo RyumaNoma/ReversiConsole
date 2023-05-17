@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Allocator">
-      <UniqueIdentifier>{173857a5-48c5-4f92-933e-d9e9a721bcc7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Timer">
       <UniqueIdentifier>{2cecf727-a5d3-4d85-96dc-8386b0c566b6}</UniqueIdentifier>
     </Filter>
@@ -25,28 +22,40 @@
     <Filter Include="ソース ファイル\Point">
       <UniqueIdentifier>{cc9da47e-de1e-4298-ae77-ce219ab3449b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Allocator">
+      <UniqueIdentifier>{f2bbfca6-2070-4c1a-986d-bf7ed2fa2211}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Debug">
+      <UniqueIdentifier>{ffa4ffda-71af-44f3-bd6a-da2032d0c7d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Timer">
+      <UniqueIdentifier>{d31f4429-1fb5-4cb5-a7f2-411876cd8494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Point">
+      <UniqueIdentifier>{440e2406-be3e-4bcf-aa50-f3332319799e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Allocator\Allocator.hpp">
-      <Filter>ソース ファイル\Allocator</Filter>
-    </ClInclude>
     <ClInclude Include="src\Allocator\AllocatorDefine.hpp">
-      <Filter>ソース ファイル\Allocator</Filter>
+      <Filter>ヘッダー ファイル\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Allocator\Allocator.hpp">
+      <Filter>ヘッダー ファイル\Allocator</Filter>
     </ClInclude>
     <ClInclude Include="src\Debug\Debug.hpp">
-      <Filter>ソース ファイル\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Timer\Timer.hpp">
-      <Filter>ソース ファイル\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BitBoard.hpp">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BitBoardUnitTest.hpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ヘッダー ファイル\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\Point\Point.hpp">
-      <Filter>ソース ファイル\Point</Filter>
+      <Filter>ヘッダー ファイル\Point</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Timer\Timer.hpp">
+      <Filter>ヘッダー ファイル\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BitBoard.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BitBoardUnitTest.hpp">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -119,6 +119,18 @@ public:
 	/// </summary>
 	void Swap();
 
+	/// <summary>
+	/// 自分側プレイヤーが敗北したか判定する
+	/// </summary>
+	/// <returns>自分側プレイヤーが敗北したらtrue</returns>
+	bool IsLose() const;
+
+	/// <summary>
+	/// ゲームが終了して引き分け化を判定する
+	/// </summary>
+	/// <returns>引き分けならtrue</returns>
+	bool IsDraw() const;
+
 	bool operator==(const BitBoard& bitboard) const;
 	bool operator!=(const BitBoard& bitboard) const;
 
