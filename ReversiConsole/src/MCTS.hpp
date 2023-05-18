@@ -18,7 +18,7 @@ class MCTS
 {
 public:
 	MCTS();
-	MCTS(int num_nodes, double C, int expand_thresold, std::chrono::milliseconds::rep search_time);
+	MCTS(int num_nodes, std::chrono::milliseconds::rep search_time);
 	void Init() override;
 	Point Act(const BitBoard& board) override;
 private:
