@@ -127,16 +127,11 @@ public:
 	void Swap();
 
 	/// <summary>
-	/// 自分側プレイヤーが敗北したか判定する
+	/// 試合の結果を判定する
+	/// 前提条件：試合が終了していること
 	/// </summary>
-	/// <returns>自分側プレイヤーが敗北したらtrue</returns>
-	bool IsLose() const;
-
-	/// <summary>
-	/// ゲームが終了して引き分け化を判定する
-	/// </summary>
-	/// <returns>引き分けならtrue</returns>
-	bool IsDraw() const;
+	/// <returns>勝ち：1, 引き分け：0.5, 負け：0</returns>
+	double Result() const;
 
 	bool operator==(const BitBoard& bitboard) const;
 	bool operator!=(const BitBoard& bitboard) const;

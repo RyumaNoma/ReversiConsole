@@ -91,20 +91,13 @@ void BitBoard::Swap()
 	std::swap(board_[0], board_[1]);
 }
 
-bool BitBoard::IsLose() const
+double BitBoard::Result() const
 {
 	int me = CountStones(false);
 	int opponent = CountStones(true);
-
-	return (IsFinish() && opponent > me);
-}
-
-bool BitBoard::IsDraw() const
-{
-	int me = CountStones(false);
-	int opponent = CountStones(true);
-
-	return (IsFinish() && opponent == me);
+	if (me > opponent) return 1;
+	else if (me == opponent) return 0.5;
+	else return 0.0;
 }
 
 bool BitBoard::operator==(const BitBoard& bitboard) const {
