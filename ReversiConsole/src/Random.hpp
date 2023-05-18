@@ -4,7 +4,7 @@ class Random
 {
 public:
 	Random();
-	Random(std::uint64_t seed);
+	Random(std::uint32_t seed);
 	Random(const Random&);
 	~Random() {}
 	/// <summary>

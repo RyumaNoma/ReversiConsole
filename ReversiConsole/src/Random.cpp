@@ -5,7 +5,7 @@ Random::Random()
 {
 }
 
-Random::Random(std::uint64_t seed)
+Random::Random(std::uint32_t seed)
 	: x_(seed)
 {
 }
