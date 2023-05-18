@@ -56,6 +56,16 @@ double Node::Evaluate(BitBoard& copy, Allocator<Node>& allocator, Random& random
 	return result;
 }
 
+void Node::Expand(const BitBoard& board, Allocator<Node>& allocator)
+{
+	auto legal_actions = board.LegalActions();
+	for (const auto& action : legal_actions)
+	{
+		Node* ptr = new(allocator.Allocate()) Node(action);
+		children_.push_back(ptr);
+	}
+}
+
 double Node::UCB1(int N, double C) const
 {
 	if (N == 0 || n_ == 0) return 10000;
