@@ -46,6 +46,7 @@ public:
 	Point SelectBestAction() const;
 
 	friend std::ostream& operator<<(std::ostream& os, const Node& node);
+	friend class NodeUnitTest;
 private:
 	static constexpr double C_ = 1.0;
 	static constexpr int EXPAND_THRESHOLD_ = 1;

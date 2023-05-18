@@ -28,6 +28,7 @@
     <ClInclude Include="src\Human.hpp" />
     <ClInclude Include="src\MCTS.hpp" />
     <ClInclude Include="src\Node.hpp" />
+    <ClInclude Include="src\NodeUnitTest.hpp" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Point\Point.hpp" />
     <ClInclude Include="src\Random.hpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MCTS.cpp" />
     <ClCompile Include="src\Node.cpp" />
+    <ClCompile Include="src\NodeUnitTest.cpp" />
     <ClCompile Include="src\Point\Point.cpp" />
     <ClCompile Include="src\Random.cpp" />
     <ClCompile Include="src\Timer\Timer.cpp" />

@@ -63,9 +63,6 @@
     <ClInclude Include="src\BitBoardUnitTest.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\Node.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameAIFunction.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -79,6 +76,12 @@
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
     <ClInclude Include="src\Human.hpp">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Node.hpp">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NodeUnitTest.hpp">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,9 +107,6 @@
     <ClCompile Include="src\Point\Point.cpp">
       <Filter>ソース ファイル\Point</Filter>
     </ClCompile>
-    <ClCompile Include="src\Node.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameAIFunction.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -117,6 +117,12 @@
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
     <ClCompile Include="src\Human.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Node.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeUnitTest.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
   </ItemGroup>
