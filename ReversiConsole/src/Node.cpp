@@ -66,6 +66,37 @@ void Node::Expand(const BitBoard& board, Allocator<Node>& allocator)
 	}
 }
 
+Node* Node::SelectChildren() const
+{
+	Node* best_child = nullptr;
+	double best_value = -1;
+	for (Node* child : children_)
+	{
+		double value = UCB1_Tuned(n_);
+		if (value > best_value)
+		{
+			best_value = value;
+			best_child = child;
+		}
+	}
+	return best_child;
+}
+
+Point Node::SelectBestAction() const
+{
+	Point best_action = Point(-1, -1);
+	double best_value = -1;
+	for (Node* child : children_)
+	{
+		if (child->n_ > best_value)
+		{
+			best_value = child->n_;
+			best_action = child->action_;
+		}
+	}
+	return best_action;
+}
+
 double Node::UCB1(int N) const
 {
 	if (N == 0 || n_ == 0) return 10000;
