@@ -34,6 +34,12 @@
     <Filter Include="ヘッダー ファイル\Point">
       <UniqueIdentifier>{440e2406-be3e-4bcf-aa50-f3332319799e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{09fbfa6c-7cb7-4c73-ab08-554d954a836a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Player">
+      <UniqueIdentifier>{2e53aca7-ddcd-44ca-8026-e88870269ade}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Allocator\AllocatorDefine.hpp">
@@ -66,6 +72,12 @@
     <ClInclude Include="src\Random.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\Player.hpp">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MCTS.hpp">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Debug\Debug.cpp">
@@ -97,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="src\Random.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MCTS.cpp">
+      <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

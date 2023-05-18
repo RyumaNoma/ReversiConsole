@@ -25,7 +25,9 @@
     <ClInclude Include="src\BitBoardUnitTest.hpp" />
     <ClInclude Include="src\Debug\Debug.hpp" />
     <ClInclude Include="src\GameAIFunction.hpp" />
+    <ClInclude Include="src\MCTS.hpp" />
     <ClInclude Include="src\Node.hpp" />
+    <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Point\Point.hpp" />
     <ClInclude Include="src\Random.hpp" />
     <ClInclude Include="src\Timer\Timer.hpp" />
@@ -37,6 +39,7 @@
     <ClCompile Include="src\Debug\Debug.cpp" />
     <ClCompile Include="src\GameAIFunction.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MCTS.cpp" />
     <ClCompile Include="src\Node.cpp" />
     <ClCompile Include="src\Point\Point.cpp" />
     <ClCompile Include="src\Random.cpp" />
