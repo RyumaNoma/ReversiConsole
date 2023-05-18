@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Human.hpp" />
     <ClInclude Include="src\Allocator\Allocator.hpp" />
     <ClInclude Include="src\Allocator\AllocatorDefine.hpp" />
     <ClInclude Include="src\BitBoard.hpp" />
     <ClInclude Include="src\BitBoardUnitTest.hpp" />
     <ClInclude Include="src\Debug\Debug.hpp" />
     <ClInclude Include="src\GameAIFunction.hpp" />
+    <ClInclude Include="src\Human.hpp" />
     <ClInclude Include="src\MCTS.hpp" />
     <ClInclude Include="src\Node.hpp" />
     <ClInclude Include="src\Player.hpp" />
@@ -34,12 +34,12 @@
     <ClInclude Include="src\Timer\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Human.cpp" />
     <ClCompile Include="src\BitBoard.cpp" />
     <ClCompile Include="src\BitBoardUnitTest.cpp" />
     <ClCompile Include="src\BitBoard_BitOperation.cpp" />
     <ClCompile Include="src\Debug\Debug.cpp" />
     <ClCompile Include="src\GameAIFunction.cpp" />
+    <ClCompile Include="src\Human.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MCTS.cpp" />
     <ClCompile Include="src\Node.cpp" />
