@@ -14,6 +14,7 @@ private:
 		BlockType block;
 		union node_t* next;
 		node_t() {}
+		~node_t() {}
 	};
 	using Node = union node_t;
 
