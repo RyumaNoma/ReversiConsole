@@ -9,6 +9,7 @@ public:
 	~Random() {}
 
 	std::uint32_t Generate();
+	std::uint32_t Generate(std::uint32_t max);
 private:
 	std::uint32_t x_;
 };

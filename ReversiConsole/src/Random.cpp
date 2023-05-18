@@ -22,3 +22,8 @@ std::uint32_t Random::Generate()
 	x_ ^= x_ << 5;
 	return x_;
 }
+
+std::uint32_t Random::Generate(std::uint32_t max)
+{
+	return Generate() % max;
+}
