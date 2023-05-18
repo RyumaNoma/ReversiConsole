@@ -4,7 +4,7 @@
 #include "Allocator/Allocator.hpp"
 #include "Random.hpp"
 #include "Timer/Timer.hpp"
-class Node;
+#include "Node.hpp"
 
 /// <summary>
 /// モンテカルロ木探索をするプレイヤー
