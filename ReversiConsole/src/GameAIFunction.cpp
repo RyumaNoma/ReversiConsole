@@ -6,7 +6,7 @@
 Point GameAIFunction::RandomAction(BitBoard* board, Random* random)
 {
 	auto legal = board->LegalPublic();
-	int num_action = __popcnt64(legal);
+	int num_action = static_cast<int>(__popcnt64(legal));
 	std::uint32_t index = random->Generate(num_action);
 	// s“®‚Ì¶¬
 	int count_action = 0;

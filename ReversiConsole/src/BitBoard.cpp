@@ -50,7 +50,7 @@ bool BitBoard::Act(Point action)
 
 int BitBoard::CountStones(bool is_opponent) const
 {
-	return __popcnt64( board_[ static_cast<std::uint8_t>(is_opponent) ] );
+	return static_cast<int>(__popcnt64( board_[ static_cast<std::uint8_t>(is_opponent) ] ));
 }
 
 bool BitBoard::IsFinish() const
