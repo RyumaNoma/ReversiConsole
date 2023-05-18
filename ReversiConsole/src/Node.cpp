@@ -58,11 +58,13 @@ double Node::Evaluate(BitBoard& copy, Allocator<Node>& allocator, Random& random
 
 double Node::UCB1(int N, double C) const
 {
+	if (N == 0 || n_ == 0) return 10000;
 	return w_ / n_ + C * std::sqrt(2 * log(N) / n_);
 }
 
 double Node::UCB1_Tuned(int N, double C) const
 {
+	if (N == 0 || n_ == 0) return 10000;
 	const double mean = w_ / n_;
 	const double dispersion = ww_ / n_ - mean * mean;
 	const double V = dispersion * std::sqrt(2 * log(N) / n_);
