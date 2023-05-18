@@ -29,8 +29,14 @@ Point GameAIFunction::RandomAction(BitBoard* board, Random* random)
 
 double GameAIFunction::Playout(BitBoard* board, Random* random)
 {
-	if (board->IsLose()) return 0;
-	if (board->IsDraw()) return 0.5;
+	if (board->IsFinish())
+	{
+		int me = board->CountStones(false);
+		int opponent = board->CountStones(true);
+		if (me > opponent) return 1;
+		else if (me == opponent) return 0.5;
+		else return 0.0;
+	}
 	board->Act(RandomAction(board, random));
 	return 1.0 - Playout(board, random);
 }
