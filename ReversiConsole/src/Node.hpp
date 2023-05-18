@@ -11,8 +11,8 @@ public:
 	/// <summary>
 	/// 注意：コピー元と同じ子ノードを参照する
 	/// </summary>
-	/// <param name=""></param>
-	Node(const Node&);
+	/// <param name="node">コピー元</param>
+	Node(const Node& node);
 	~Node() {}
 
 	/// <summary>
@@ -34,6 +34,15 @@ public:
 	/// </summary>
 	/// <returns>選択された子ノード</returns>
 	Node* SelectChildren() const;
+
+	/// <summary>
+	/// もっともよい行動を求める．
+	/// 正確には，子ノードの中から最も訪問回数が多い子ノードの行動
+	/// </summary>
+	/// <returns>もっともよい行動</returns>
+	Point SelectBestAction() const;
+
+	friend std::ostream& operator<<(std::ostream& os, const Node& node);
 private:
 	Point action_;
 	double w_;
