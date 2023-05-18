@@ -31,11 +31,7 @@ double GameAIFunction::Playout(BitBoard* board, Random* random)
 {
 	if (board->IsFinish())
 	{
-		int me = board->CountStones(false);
-		int opponent = board->CountStones(true);
-		if (me > opponent) return 1;
-		else if (me == opponent) return 0.5;
-		else return 0.0;
+		return board->Result();
 	}
 	board->Act(RandomAction(board, random));
 	return 1.0 - Playout(board, random);
