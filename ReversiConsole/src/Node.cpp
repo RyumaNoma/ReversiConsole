@@ -114,5 +114,10 @@ double Node::UCB1_Tuned(int N) const
 
 std::ostream& operator<<(std::ostream& os, const Node& node)
 {
-	// TODO: return ステートメントをここに挿入します
+	os << "action:" << node.action_
+		<< "n:" << node.n_
+		<< "w:" << node.w_
+		<< "ww:" << node.ww_
+		<< "children:" << node.children_.size();
+	return os;
 }
