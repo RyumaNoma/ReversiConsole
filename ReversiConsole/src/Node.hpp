@@ -59,15 +59,13 @@ private:
 	/// UCB1を計算する
 	/// </summary>
 	/// <param name="N">親ノードの実行回数</param>
-	/// <param name="C">探索係数</param>
 	/// <returns>UCB1の値</returns>
-	double UCB1(int N, double C) const;
+	double UCB1(int N) const;
 
 	/// <summary>
 	/// UCB1_Tunedを計算する
 	/// </summary>
 	/// <param name="N">親ノードの実行回数</param>
-	/// <param name="C">探索係数</param>
 	/// <returns>UCB1_Tunedの値</returns>
-	double UCB1_Tuned(int N, double C) const;
+	double UCB1_Tuned(int N) const;
 };

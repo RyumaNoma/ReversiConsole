@@ -66,19 +66,19 @@ void Node::Expand(const BitBoard& board, Allocator<Node>& allocator)
 	}
 }
 
-double Node::UCB1(int N, double C) const
+double Node::UCB1(int N) const
 {
 	if (N == 0 || n_ == 0) return 10000;
-	return w_ / n_ + C * std::sqrt(2 * log(N) / n_);
+	return w_ / n_ + C_ * std::sqrt(2 * log(N) / n_);
 }
 
-double Node::UCB1_Tuned(int N, double C) const
+double Node::UCB1_Tuned(int N) const
 {
 	if (N == 0 || n_ == 0) return 10000;
 	const double mean = w_ / n_;
 	const double dispersion = ww_ / n_ - mean * mean;
 	const double V = dispersion * std::sqrt(2 * log(N) / n_);
-	return mean + C * std::sqrt(log(N) / n_ * std::min(0.25, V));
+	return mean + C_ * std::sqrt(log(N) / n_ * std::min(0.25, V));
 }
 
 std::ostream& operator<<(std::ostream& os, const Node& node)
