@@ -15,7 +15,6 @@ void BitBoardUnitTest::Act()
 	bool success;
 	success = b.Act(Point(3, 2));
 	assert(success);
-	b.Swap();
 	success = b.Act(Point(4, 2));
 	assert(success);
 	std::cerr << b << std::endl;
@@ -49,9 +48,8 @@ void BitBoardUnitTest::CountStones()
 	assert(success);
 	me = b.CountStones(false);
 	opponent = b.CountStones(true);
-	assert(4 == me);
-	assert(1 == opponent);
-	b.Swap();
+	assert(1 == me);
+	assert(4 == opponent);
 
 	success = b.Act(Point(4, 2));
 	assert(success);
@@ -59,7 +57,6 @@ void BitBoardUnitTest::CountStones()
 	opponent = b.CountStones(true);
 	assert(3 == me);
 	assert(3 == opponent);
-	b.Swap();
 
 	success = b.Act(Point(7, 7));
 	assert(!success);
@@ -67,7 +64,6 @@ void BitBoardUnitTest::CountStones()
 	opponent = b.CountStones(true);
 	assert(3 == me);
 	assert(3 == opponent);
-	b.Swap();
 
 	std::cerr << b << std::endl;
 	std::cerr << "completed CountStones Test" << std::endl;
@@ -98,7 +94,6 @@ void BitBoardUnitTest::LeftUpGame()
 				break;
 			}
 		}
-		b.Swap();
 	}
 	std::cerr << b << std::endl;
 	std::cerr << "completed Left Up Game Test" << std::endl;
@@ -129,7 +124,6 @@ void BitBoardUnitTest::RightBottomGame()
 				break;
 			}
 		}
-		b.Swap();
 	}
 	std::cerr << b << std::endl;
 	std::cerr << "completed Right Bottom Game Test" << std::endl;

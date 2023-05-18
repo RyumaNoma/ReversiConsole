@@ -42,6 +42,7 @@ bool BitBoard::Act(Point action)
 	if (position & legal)
 	{
 		Reverse(action);
+		Swap();
 		return true;
 	}
 	return false;
