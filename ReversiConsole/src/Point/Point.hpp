@@ -38,13 +38,21 @@ public:
 	bool operator ==(Point point) const;
 	bool operator !=(Point point) const;
 
-	int x() const noexcept
+	int X() const noexcept
 	{
 		return x_;
 	}
-	int y() const noexcept
+	int Y() const noexcept
 	{
 		return y_;
+	}
+	void SetX(int x)
+	{
+		x_ = x;
+	}
+	void SetY(int y)
+	{
+		y_ = y;
 	}
 
 	friend std::ostream& operator <<(std::ostream& os, Point point);

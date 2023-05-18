@@ -76,7 +76,7 @@ BitBoard::Board BitBoard::ReverseStones(Board me, Board opponent, Board position
 void BitBoard::Reverse(Point action)
 {
 	// 盤面外のマスの指定
-	int stone_index = action.y() * 8 + action.x();
+	int stone_index = action.Y() * 8 + action.X();
 	if (stone_index < 0 || stone_index > 63)
 	{
 		return;

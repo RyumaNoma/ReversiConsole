@@ -32,7 +32,7 @@ bool BitBoard::Act(Point action)
 	auto legal = Legal(board_[0], board_[1]);
 
 	// 盤面外のマスの指定
-	int stone_index = action.y() * 8 + action.x();
+	int stone_index = action.Y() * 8 + action.X();
 	if (stone_index < 0 || 63 < stone_index)
 	{
 		return false;
