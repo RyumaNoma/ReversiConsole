@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Human.hpp" />
     <ClInclude Include="src\Allocator\Allocator.hpp" />
     <ClInclude Include="src\Allocator\AllocatorDefine.hpp" />
     <ClInclude Include="src\BitBoard.hpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="src\Timer\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Human.cpp" />
     <ClCompile Include="src\BitBoard.cpp" />
     <ClCompile Include="src\BitBoardUnitTest.cpp" />
     <ClCompile Include="src\BitBoard_BitOperation.cpp" />

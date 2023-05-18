@@ -78,6 +78,9 @@
     <ClInclude Include="src\MCTS.hpp">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Human.hpp">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Debug\Debug.cpp">
@@ -111,6 +114,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\MCTS.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Human.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
   </ItemGroup>
