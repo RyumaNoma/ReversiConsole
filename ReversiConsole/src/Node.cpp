@@ -12,6 +12,15 @@ Node::Node()
 {
 }
 
+Node::Node(const Point& action)
+	: action_(action)
+	, w_(0)
+	, ww_(0)
+	, n_(0)
+	, children_()
+{
+}
+
 Node::Node(const Node& node)
 	: action_(node.action_)
 	, w_(node.w_)
