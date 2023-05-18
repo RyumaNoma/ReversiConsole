@@ -1,13 +1,16 @@
 #pragma once
 #include "Point/Point.hpp"
 #include <vector>
+#include "Allocator/Allocator.hpp"
 
 class BitBoard;
+class Random;
 
 class Node
 {
 public:
 	Node();
+	Node(const Point& action);
 	/// <summary>
 	/// 注意：コピー元と同じ子ノードを参照する
 	/// </summary>
@@ -20,13 +23,13 @@ public:
 	/// </summary>
 	/// <param name="copy">変更していい盤面</param>
 	/// <returns>プレイアウトの結果</returns>
-	double Evaluate(BitBoard* copy);
+	double Evaluate(BitBoard& copy, Allocator<Node>& allocator, Random& random);
 
 	/// <summary>
 	/// MCTSの展開
 	/// </summary>
 	/// <param name="board">ノードでの盤面状態</param>
-	void Expand(const BitBoard& board);
+	void Expand(const BitBoard& board, Allocator<Node>& allocator);
 
 	/// <summary>
 	/// 子ノードの中から選択する．
@@ -44,6 +47,8 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& os, const Node& node);
 private:
+	static constexpr double C_ = 1.0;
+	static constexpr int EXPAND_THRESHOLD_ = 1;
 	Point action_;
 	double w_;
 	double ww_;

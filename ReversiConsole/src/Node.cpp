@@ -1,4 +1,7 @@
 #include "Node.hpp"
+#include "BitBoard.hpp"
+#include "GameAIFunction.hpp"
+#include "Random.hpp"
 
 Node::Node()
 	: action_()
@@ -18,6 +21,41 @@ Node::Node(const Node& node)
 {
 }
 
+double Node::Evaluate(BitBoard& copy, Allocator<Node>& allocator, Random& random)
+{
+	double result;
+	if (copy.IsFinish())
+	{
+		result = copy.Result();
+		w_ += result;
+		ww_ += result * result;
+		++n_;
+		return result;
+	}
+	if (children_.empty())
+	{
+		result = GameAIFunction::Playout(&copy, &random);
+		w_ += result;
+		ww_ += result * result;
+		++n_;
+
+		if (n_ == EXPAND_THRESHOLD_)
+		{
+			Expand(copy, allocator);
+		}
+		return result;
+	}
+	else
+	{
+		result = 1.0 - Evaluate(copy, allocator, random);
+		w_ += result;
+		ww_ += result * result;
+		++n_;
+		return result;
+	}
+	return result;
+}
+
 double Node::UCB1(int N, double C) const
 {
 	return w_ / n_ + C * std::sqrt(2 * log(N) / n_);
@@ -29,4 +67,9 @@ double Node::UCB1_Tuned(int N, double C) const
 	const double dispersion = ww_ / n_ - mean * mean;
 	const double V = dispersion * std::sqrt(2 * log(N) / n_);
 	return mean + C * std::sqrt(log(N) / n_ * std::min(0.25, V));
+}
+
+std::ostream& operator<<(std::ostream& os, const Node& node)
+{
+	// TODO: return ステートメントをここに挿入します
 }
