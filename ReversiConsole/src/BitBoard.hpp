@@ -137,5 +137,6 @@ public:
 	bool operator!=(const BitBoard& bitboard) const;
 
 	friend std::ostream& operator<<(std::ostream& os, const BitBoard& bit_board);
+	friend class MatchScene;
 };
 
