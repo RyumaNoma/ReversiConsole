@@ -129,10 +129,13 @@ double Node::UCB1_Tuned(int N) const
 
 std::ostream& operator<<(std::ostream& os, const Node& node)
 {
+	double mean;
 	os << "action:" << node.action_ << std::endl
 		<< "n:" << node.n_ << std::endl
 		<< "w:" << node.w_ << std::endl
 		<< "ww:" << node.ww_ << std::endl
-		<< "children:" << node.children_.size();
+		<< "children:" << node.children_.size()
+		<< "•½‹Ï:" << (mean = node.w_ / node.n_) << std::endl
+		<< "•W€•Î·:" << std::sqrt(node.ww_ / node.n_ - mean * mean);
 	return os;
 }
