@@ -25,10 +25,13 @@ Point MCTS::Act(const BitBoard& board)
 	root.Expand(board, allocator_);
 
 	Timer timer;
+	int count = 0;
 	while (timer.ElapsedMilliseconds() < SEARCH_TIME_)
 	{
 		BitBoard copy = board;
 		root.Evaluate(copy, allocator_, random_);
+		++count;
 	}
+	// std::cout << "count:" << count << std::endl;
 	return root.SelectBestAction();
 }
