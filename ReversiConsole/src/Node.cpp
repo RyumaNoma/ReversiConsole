@@ -43,20 +43,21 @@ double Node::Evaluate(BitBoard& copy, Allocator<Node>& allocator, Random& random
 	}
 	if (children_.empty())
 	{
+		if (n_ == EXPAND_THRESHOLD_ - 1)
+		{
+			Expand(copy, allocator);
+		}
 		result = GameAIFunction::Playout(&copy, &random);
 		w_ += result;
 		ww_ += result * result;
 		++n_;
-
-		if (n_ == EXPAND_THRESHOLD_)
-		{
-			Expand(copy, allocator);
-		}
 		return result;
 	}
 	else
 	{
-		result = 1.0 - Evaluate(copy, allocator, random);
+		Node* child = SelectChildren();
+		copy.Act(child->action_);
+		result = 1.0 - child->Evaluate(copy, allocator, random);
 		w_ += result;
 		ww_ += result * result;
 		++n_;
@@ -70,7 +71,12 @@ void Node::Expand(const BitBoard& board, Allocator<Node>& allocator)
 	auto legal_actions = board.LegalActions();
 	for (const auto& action : legal_actions)
 	{
-		Node* ptr = new(allocator.Allocate()) Node(action);
+		Node* ptr = allocator.Allocate();
+		if (ptr == nullptr)
+		{
+			std::cout << "NULL POINTER" << std::endl;
+		}
+		new(ptr) Node(action);
 		children_.push_back(ptr);
 	}
 }
@@ -81,7 +87,7 @@ Node* Node::SelectChildren() const
 	double best_value = -1;
 	for (Node* child : children_)
 	{
-		double value = UCB1_Tuned(n_);
+		double value = child->UCB1_Tuned(n_);
 		if (value > best_value)
 		{
 			best_value = value;
@@ -117,16 +123,16 @@ double Node::UCB1_Tuned(int N) const
 	if (N == 0 || n_ == 0) return 10000;
 	const double mean = w_ / n_;
 	const double dispersion = ww_ / n_ - mean * mean;
-	const double V = dispersion * std::sqrt(2 * log(N) / n_);
+	const double V = dispersion + std::sqrt(2 * log(N) / n_);
 	return mean + C_ * std::sqrt(log(N) / n_ * std::min(0.25, V));
 }
 
 std::ostream& operator<<(std::ostream& os, const Node& node)
 {
-	os << "action:" << node.action_
-		<< "n:" << node.n_
-		<< "w:" << node.w_
-		<< "ww:" << node.ww_
+	os << "action:" << node.action_ << std::endl
+		<< "n:" << node.n_ << std::endl
+		<< "w:" << node.w_ << std::endl
+		<< "ww:" << node.ww_ << std::endl
 		<< "children:" << node.children_.size();
 	return os;
 }
