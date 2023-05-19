@@ -32,6 +32,7 @@
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Point\Point.hpp" />
     <ClInclude Include="src\Random.hpp" />
+    <ClInclude Include="src\Scene.hpp" />
     <ClInclude Include="src\Timer\Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
