@@ -33,6 +33,13 @@ double GameAIFunction::Playout(BitBoard* board, Random* random)
 	{
 		return board->Result();
 	}
-	board->Act(RandomAction(board, random));
+	if (board->LegalPublic())
+	{
+		board->Act(RandomAction(board, random));
+	}
+	else
+	{
+		board->Swap();
+	}
 	return 1.0 - Playout(board, random);
 }
