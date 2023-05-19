@@ -26,6 +26,7 @@
     <ClInclude Include="src\Debug\Debug.hpp" />
     <ClInclude Include="src\GameAIFunction.hpp" />
     <ClInclude Include="src\Human.hpp" />
+    <ClInclude Include="src\MatchScene.hpp" />
     <ClInclude Include="src\MCTS.hpp" />
     <ClInclude Include="src\Node.hpp" />
     <ClInclude Include="src\NodeUnitTest.hpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="src\GameAIFunction.cpp" />
     <ClCompile Include="src\Human.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MatchScene.cpp" />
     <ClCompile Include="src\MCTS.cpp" />
     <ClCompile Include="src\Node.cpp" />
     <ClCompile Include="src\NodeUnitTest.cpp" />
