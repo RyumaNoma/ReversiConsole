@@ -34,10 +34,10 @@ bool SceneManager::Add(std::string scene_name, Scene* scene)
 {
 	if (scenes_.count(scene_name))
 	{
-		scenes_.insert(std::make_pair(scene_name, scene));
-		return true;
+		return false;
 	}
-	return false;
+	scenes_.insert(std::make_pair(scene_name, scene));
+	return true;
 }
 
 bool SceneManager::SetStartUpScene(std::string scene_name)

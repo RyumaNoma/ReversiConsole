@@ -5,7 +5,7 @@
 class Scene
 {
 public:
-	Scene();
+	Scene() {}
 	virtual ~Scene() = default;
 	virtual void OnChanged(const std::map<std::string, int>& param) = 0;
 	virtual void Draw() const = 0;
