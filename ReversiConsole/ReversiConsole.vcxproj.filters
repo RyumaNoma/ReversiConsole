@@ -40,6 +40,12 @@
     <Filter Include="ヘッダー ファイル\Player">
       <UniqueIdentifier>{2e53aca7-ddcd-44ca-8026-e88870269ade}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{70d27b2d-945b-4878-af54-c56c1c53c1f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene">
+      <UniqueIdentifier>{592306e0-2214-4a2c-b712-b617c02ceec0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Allocator\AllocatorDefine.hpp">
@@ -84,6 +90,12 @@
     <ClInclude Include="src\NodeUnitTest.hpp">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scene.hpp">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneManager.hpp">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Debug\Debug.cpp">
@@ -124,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="src\NodeUnitTest.cpp">
       <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManager.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
