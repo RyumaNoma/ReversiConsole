@@ -145,11 +145,24 @@ void MatchScene::DrawThink() const
 
 void MatchScene::DrawPlayAnimation() const
 {
+	// 画面サイズの取得
+	RECT rc;
+	GetWindowRect(GetDesktopWindow(), &rc);
+	int width = rc.right - rc.left;
+	int height = rc.bottom - rc.top;
 
+	DrawBoard(width, height);
 }
 
 void MatchScene::DrawAfterMatch() const
 {
+	// 画面サイズの取得
+	RECT rc;
+	GetWindowRect(GetDesktopWindow(), &rc);
+	int width = rc.right - rc.left;
+	int height = rc.bottom - rc.top;
+
+	DrawBoard(width, height);
 }
 
 void MatchScene::DrawBoard(int window_width, int window_height) const
