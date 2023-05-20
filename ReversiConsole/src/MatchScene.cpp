@@ -19,7 +19,7 @@ MatchScene::MatchScene(SceneManager* manager)
 
 void MatchScene::OnChanged(const std::map<std::string, int>& param)
 {
-	SetPlayers(new MCTS(10000, 10), new MCTS(10000, 10));
+	SetPlayers(new MCTS(10000, 10), new Human());
 	Init();
 }
 
@@ -65,6 +65,7 @@ void MatchScene::Update()
 	}
 	++count_frame_;
 }
+
 void MatchScene::BeforeMatch()
 {
 	if (count_frame_ == FRAMES_PER_SECOND)
@@ -73,6 +74,7 @@ void MatchScene::BeforeMatch()
 		count_frame_ = 0;
 	}
 }
+
 void MatchScene::Think()
 {
 	if (board_.LegalPublic())
