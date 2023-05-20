@@ -1,43 +1,155 @@
 #include "MatchScene.hpp"
 #include "DxLib.h"
+#include "Player.hpp"
+#include "Point/Point.hpp"
+#include "MCTS.hpp"
+#include "Human.hpp"
+#include "Debug/Debug.hpp"
 
-MatchScene::MatchScene()
+MatchScene::MatchScene(SceneManager* manager)
 	: board_()
-	, player{ nullptr, nullptr }
+	, last_board_()
+	, player_{ nullptr, nullptr }
 	, turn_(0)
-{
-}
-
-MatchScene::MatchScene(Player* player1, Player* player2)
-	: board_()
-	, player{ player1, player2 }
-	, turn_(0)
+	, state_(MatchState::BeforeMatch)
+	, count_frame_(0)
+	, Scene(manager)
 {
 }
 
 void MatchScene::OnChanged(const std::map<std::string, int>& param)
 {
+	SetPlayers(new MCTS(10000, 10), new MCTS(10000, 10));
 	Init();
 }
 
 void MatchScene::Draw() const
+{
+	switch (state_)
+	{
+	case MatchState::BeforeMatch:
+		DrawBeforeMatch();
+		break;
+	case MatchScene::MatchState::Think:
+		DrawThink();
+		break;
+	case MatchScene::MatchState::PlayAnimation:
+		DrawPlayAnimation();
+		break;
+	case MatchScene::MatchState::AfterMatch:
+		DrawAfterMatch();
+		break;
+	default:
+		break;
+	}
+}
+
+void MatchScene::Update()
+{
+	// TODO: プレイヤーのマルチスレッド化
+	switch (state_)
+	{
+	case MatchState::BeforeMatch:
+		BeforeMatch();
+		break;
+	case MatchScene::MatchState::Think:
+		Think();
+		break;
+	case MatchScene::MatchState::PlayAnimation:
+		PlayAnimation();
+		break;
+	case MatchScene::MatchState::AfterMatch:
+		break;
+	default:
+		break;
+	}
+	++count_frame_;
+}
+void MatchScene::BeforeMatch()
+{
+	if (count_frame_ == FRAMES_PER_SECOND)
+	{
+		state_ = MatchState::Think;
+		count_frame_ = 0;
+	}
+}
+void MatchScene::Think()
+{
+	if (board_.LegalPublic())
+	{
+		Point action = player_[turn_ % 2]->Act(board_);
+		last_board_ = board_;
+		board_.Act(action);
+	}
+	else // pass
+	{
+		board_.Swap();
+	}
+	// ターン終了処理
+	++turn_;
+	state_ = MatchState::PlayAnimation;
+	count_frame_ = 0;
+}
+
+void MatchScene::PlayAnimation()
+{
+	if (count_frame_ == FRAMES_PER_SECOND)
+	{
+		state_ = MatchState::Think;
+		count_frame_ = 0;
+	}
+}
+
+void MatchScene::Init()
+{
+	board_.Init();
+	for (int i = 0; i < 2; ++i)
+	{
+		player_[i]->Init();
+	}
+	turn_ = 0;
+	state_ = MatchState::BeforeMatch;
+}
+
+void MatchScene::SetPlayers(Player* first_player, Player* second_player)
+{
+	player_[0] = first_player;
+	player_[1] = second_player;
+}
+
+void MatchScene::DrawBeforeMatch() const
 {
 	// 画面サイズの取得
 	RECT rc;
 	GetWindowRect(GetDesktopWindow(), &rc);
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
+
+	DrawBoard(width, height);
+	SetFontSize(64);
+	DrawBox(0, height * 0.3, width, height * 0.7, GetColor(255, 0, 0), true);
+	// TODO: 中央ぞろえ
+	DrawString(0, height * 0.3, "対戦開始", GetColor(255, 255, 255), GetColor(255, 255, 255));
+}
+
+void MatchScene::DrawThink() const
+{
+	// 画面サイズの取得
+	RECT rc;
+	GetWindowRect(GetDesktopWindow(), &rc);
+	int width = rc.right - rc.left;
+	int height = rc.bottom - rc.top;
+
 	DrawBoard(width, height);
 }
 
-void MatchScene::Update()
+void MatchScene::DrawPlayAnimation() const
 {
-	// TODO: プレイヤーのマルチスレッド化
+
 }
 
-void MatchScene::Init()
+void MatchScene::DrawAfterMatch() const
 {
-	turn_ = 0;
 }
 
 void MatchScene::DrawBoard(int window_width, int window_height) const
