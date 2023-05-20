@@ -1,9 +1,12 @@
 #include "SceneManager.hpp"
+#include "Debug/Debug.hpp"
 
 SceneManager::SceneManager()
 	: scenes_()
 	, startup_scene_()
 	, now_scene_()
+	, game_data_()
+	, changed_(true)
 {
 }
 
@@ -23,8 +26,15 @@ bool SceneManager::Update()
 
 	if (scenes_.count(now_scene_))
 	{
-		scenes_.at(now_scene_)->Draw();
-		scenes_.at(now_scene_)->Update();
+		Scene* scene = scenes_.at(now_scene_);
+		// TODO: マルチスレッド化してロード画面の実装
+		if (changed_)
+		{
+			scene->OnChanged(game_data_);
+			changed_ = false;
+		}
+		scene->Draw();
+		scene->Update();
 		return true;
 	}
 	return false;
@@ -45,6 +55,18 @@ bool SceneManager::SetStartUpScene(std::string scene_name)
 	if (scenes_.count(scene_name))
 	{
 		startup_scene_ = scene_name;
+		return true;
+	}
+	return false;
+}
+
+bool SceneManager::Change(std::string scene_name, const std::map<std::string, int>& tell_game_data)
+{
+	if (scenes_.count(scene_name))
+	{
+		game_data_ = tell_game_data;
+		now_scene_ = scene_name;
+		changed_ = true;
 		return true;
 	}
 	return false;
