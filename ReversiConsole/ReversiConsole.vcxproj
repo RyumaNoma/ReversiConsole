@@ -33,6 +33,7 @@
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Point\Point.hpp" />
     <ClInclude Include="src\Random.hpp" />
+    <ClInclude Include="src\ResultScene.hpp" />
     <ClInclude Include="src\Scene.hpp" />
     <ClInclude Include="src\SceneManager.hpp" />
     <ClInclude Include="src\Timer\Timer.hpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="src\NodeUnitTest.cpp" />
     <ClCompile Include="src\Point\Point.cpp" />
     <ClCompile Include="src\Random.cpp" />
+    <ClCompile Include="src\ResultScene.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\Timer\Timer.cpp" />
