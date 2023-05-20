@@ -36,6 +36,7 @@
     <ClInclude Include="src\Scene.hpp" />
     <ClInclude Include="src\SceneManager.hpp" />
     <ClInclude Include="src\Timer\Timer.hpp" />
+    <ClInclude Include="src\TitleScene.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BitBoard.cpp" />
@@ -54,6 +55,7 @@
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\Timer\Timer.cpp" />
+    <ClCompile Include="src\TitleScene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
