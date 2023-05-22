@@ -21,8 +21,22 @@ public:
 	MCTS(int num_nodes, std::chrono::milliseconds::rep search_time);
 	void Init() override;
 	Point Act(const BitBoard& board) override;
+
+	/// <summary>
+	/// 平均プレイアウト回数を返す（小数点以下切り捨て）
+	/// </summary>
+	/// <returns>平均プレイアウト回数</returns>
+	int AveragePlayout() const;
+
+	/// <summary>
+	/// 探索時間の取得
+	/// </summary>
+	/// <returns>1ターン当たりの探索時間[ms]</returns>
+	std::chrono::milliseconds::rep GetSearchTime() const;
 private:
 	const std::chrono::milliseconds::rep SEARCH_TIME_;
 	Allocator<Node> allocator_;
 	Random random_;
+	int sum_playout_;
+	int turn_playout_;
 };
