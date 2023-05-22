@@ -142,7 +142,7 @@ void MatchScene::DrawBeforeMatch() const
 	DrawBox(0, height * 0.3, width, height * 0.7, GetColor(255, 0, 0), true);
 	// TODO: ’†‰›‚¼‚ë‚¦
 	SetFontSize(64);
-	std::string human_side_str = (human_side_) ? "Œãè" : "æè";
+	std::string human_side_str = (human_side_) ? "Œãè(”’)" : "æè(•)";
 	DrawString(0, height * 0.3, "‘ÎíŠJn", GetColor(255, 255, 255), GetColor(255, 255, 255));
 	DrawString(0, height * 0.3 + 64, std::string("‚ ‚È‚½‚Í@" + human_side_str).c_str(), GetColor(255, 255, 255), GetColor(255, 255, 255));
 }
