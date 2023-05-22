@@ -44,4 +44,5 @@ private:
 	int turn_;// 0-indexed
 	int count_frame_;
 	MatchState state_;
+	int human_side_;
 };

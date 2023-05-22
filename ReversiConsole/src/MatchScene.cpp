@@ -5,6 +5,7 @@
 #include "MCTS.hpp"
 #include "Human.hpp"
 #include "Debug/Debug.hpp"
+#include <ctime>
 
 MatchScene::MatchScene(SceneManager* manager)
 	: board_()
@@ -13,13 +14,23 @@ MatchScene::MatchScene(SceneManager* manager)
 	, turn_(0)
 	, state_(MatchState::BeforeMatch)
 	, count_frame_(0)
+	, human_side_(0)
 	, Scene(manager)
 {
 }
 
 void MatchScene::OnChanged(const std::map<std::string, int>& param)
 {
-	SetPlayers(new MCTS(10000, 10), new Human());
+	// 時間を乱数として用いる
+	human_side_ = time(NULL) % 2;
+	if (human_side_ == 0)
+	{
+		SetPlayers(new Human(), new MCTS(10000, 10));
+	}
+	else
+	{
+		SetPlayers(new MCTS(10000, 10), new Human());
+	}
 	Init();
 }
 
@@ -128,10 +139,12 @@ void MatchScene::DrawBeforeMatch() const
 	int height = rc.bottom - rc.top;
 
 	DrawBoard(width, height);
-	SetFontSize(64);
 	DrawBox(0, height * 0.3, width, height * 0.7, GetColor(255, 0, 0), true);
 	// TODO: 中央ぞろえ
+	SetFontSize(64);
+	std::string human_side_str = (human_side_) ? "後手" : "先手";
 	DrawString(0, height * 0.3, "対戦開始", GetColor(255, 255, 255), GetColor(255, 255, 255));
+	DrawString(0, height * 0.3 + 64, std::string("あなたは　" + human_side_str).c_str(), GetColor(255, 255, 255), GetColor(255, 255, 255));
 }
 
 void MatchScene::DrawThink() const
