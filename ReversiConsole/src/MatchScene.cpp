@@ -91,7 +91,6 @@ void MatchScene::Think()
 	if (board_.LegalPublic())
 	{
 		Point action = player_[turn_ % 2]->Act(board_);
-		last_board_ = board_;
 		board_.Act(action);
 	}
 	else // pass
@@ -108,6 +107,7 @@ void MatchScene::PlayAnimation()
 {
 	if (count_frame_ == FRAMES_PER_SECOND)
 	{
+		last_board_ = board_;
 		state_ = MatchState::Think;
 		count_frame_ = 0;
 	}
@@ -154,8 +154,19 @@ void MatchScene::DrawThink() const
 	GetWindowRect(GetDesktopWindow(), &rc);
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
+	const int mergin = height * 0.1;
+	const int board_size = height * 0.8;
+	const int cell_size = board_size / 8;
 
 	DrawBoard(width, height);
+	// çáñ@éËÇÃï\é¶
+	std::vector<Point> legal_actions = board_.LegalActions();
+	for (const Point& p : legal_actions)
+	{
+		int x = mergin + p.X() * cell_size + cell_size / 2;
+		int y = mergin + p.Y() * cell_size + cell_size / 2;
+		DrawCircle(x, y, cell_size / 6, GetColor(192, 192, 192));
+	}
 }
 
 void MatchScene::DrawPlayAnimation() const
@@ -165,8 +176,30 @@ void MatchScene::DrawPlayAnimation() const
 	GetWindowRect(GetDesktopWindow(), &rc);
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
+	const int mergin = height * 0.1;
+	const int board_size = height * 0.8;
+	const int cell_size = board_size / 8;
 
+	// ëOÇÃî’ñ Ç∆ÇÃç∑ï™Çã≠í≤Ç∑ÇÈ
+	std::uint64_t diff = 0;
+	for (int i = 0; i < 1; ++i)
+	{
+		diff |= (board_.board_[i] ^ last_board_.board_[1 - i]);
+	}
 	DrawBoard(width, height);
+	for (int y = 0; y < 8; ++y)
+	{
+		for (int x = 0; x < 8; ++x)
+		{
+			if (diff & 1)
+			{
+				int center_x = mergin + cell_size * x + cell_size / 2;
+				int center_y = mergin + cell_size * y + cell_size / 2;
+				DrawCircle(center_x, center_y, cell_size / 6, GetColor(244, 173, 163), true);
+			}
+			diff >>= 1;
+		}
+	}
 }
 
 void MatchScene::DrawAfterMatch() const
@@ -180,6 +213,7 @@ void MatchScene::DrawAfterMatch() const
 	DrawBoard(width, height);
 }
 
+// TODO: ècâÊñ Ç…ëŒâû(min(width, height))
 void MatchScene::DrawBoard(int window_width, int window_height) const
 {
 	const int mergin = window_height * 0.1;
