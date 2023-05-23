@@ -7,4 +7,5 @@ class Human
 public:
 	void Init();
 	Point Act(const BitBoard& board);
+	Point LeftUp(const BitBoard& board) const;
 };

@@ -10,6 +10,9 @@ void Human::Init()
 
 Point Human::Act(const BitBoard& board)
 {
+	// demo
+	return LeftUp(board);
+
 	// ‰æ–ÊƒTƒCƒY‚ÌŽæ“¾
 	RECT rc;
 	GetWindowRect(GetDesktopWindow(), &rc);
@@ -39,4 +42,9 @@ Point Human::Act(const BitBoard& board)
 			return Point(x, y);
 		}
 	}
+}
+
+Point Human::LeftUp(const BitBoard& board) const
+{
+	return board.LegalActions()[0];
 }
