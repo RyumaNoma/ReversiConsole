@@ -126,6 +126,7 @@ void MatchScene::PlayAnimation()
 
 void MatchScene::Init()
 {
+	last_board_.Init();
 	board_.Init();
 	for (int i = 0; i < 2; ++i)
 	{
