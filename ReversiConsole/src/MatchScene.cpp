@@ -95,6 +95,7 @@ void MatchScene::Think()
 		game_data["Turn"] = turn_;
 
 		manager_->Change("Result", game_data);
+		return;
 	}
 	if (board_.LegalPublic())
 	{
