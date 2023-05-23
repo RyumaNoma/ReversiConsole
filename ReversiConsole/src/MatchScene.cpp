@@ -6,6 +6,7 @@
 #include "Human.hpp"
 #include "Debug/Debug.hpp"
 #include "SceneManager.hpp"
+#include "GameFunction.hpp"
 #include <ctime>
 
 MatchScene::MatchScene(SceneManager* manager)
@@ -196,10 +197,7 @@ int MatchScene::AIStones() const
 void MatchScene::DrawBeforeMatch() const
 {
 	// 画面サイズの取得
-	RECT rc;
-	GetWindowRect(GetDesktopWindow(), &rc);
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
+	auto [width, height] = GameFunction::GetWindowSize();
 
 	DrawBoard(width, height);
 	DrawBox(0, height * 0.3, width, height * 0.7, GetColor(255, 0, 0), true);
@@ -213,10 +211,7 @@ void MatchScene::DrawBeforeMatch() const
 void MatchScene::DrawThink() const
 {
 	// 画面サイズの取得
-	RECT rc;
-	GetWindowRect(GetDesktopWindow(), &rc);
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
+	auto [width, height] = GameFunction::GetWindowSize();
 	const int mergin = height * 0.1;
 	const int board_size = height * 0.8;
 	const int cell_size = board_size / 8;
@@ -235,10 +230,7 @@ void MatchScene::DrawThink() const
 void MatchScene::DrawPlayAnimation() const
 {
 	// 画面サイズの取得
-	RECT rc;
-	GetWindowRect(GetDesktopWindow(), &rc);
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
+	auto [width, height] = GameFunction::GetWindowSize();
 	const int mergin = height * 0.1;
 	const int board_size = height * 0.8;
 	const int cell_size = board_size / 8;

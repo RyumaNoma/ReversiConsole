@@ -1,6 +1,7 @@
 #include "TitleScene.hpp"
 #include "DxLib.h"
 #include "SceneManager.hpp"
+#include "GameFunction.hpp"
 
 void TitleScene::OnChanged(const std::map<std::string, int>& param)
 {
@@ -9,12 +10,9 @@ void TitleScene::OnChanged(const std::map<std::string, int>& param)
 void TitleScene::Draw() const
 {
 	// ‰æ–ÊƒTƒCƒY‚ÌŽæ“¾
-	RECT rc;
-	GetWindowRect(GetDesktopWindow(), &rc);
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
+	auto [width, height] = GameFunction::GetWindowSize();
 
-	DrawBox(rc.left, rc.top, rc.right, rc.bottom, GetColor(255, 192, 203), true);
+	DrawBox(0, 0, width, height, GetColor(255, 192, 203), true);
 	SetFontSize(100);
 	DrawString(0, 0, "Reversi", GetColor(255, 255, 255));
 	SetFontSize(80);

@@ -3,6 +3,7 @@
 #include "Point/Point.hpp"
 #include "BitBoard.hpp"
 #include "DxLib.h"
+#include "GameFunction.hpp"
 
 void Human::Init()
 {
@@ -14,13 +15,11 @@ Point Human::Act(const BitBoard& board)
 	return LeftUp(board);
 
 	// ‰æ–ÊƒTƒCƒY‚ÌŽæ“¾
-	RECT rc;
-	GetWindowRect(GetDesktopWindow(), &rc);
-	//int window_width = rc.right - rc.left;
-	int window_height = rc.bottom - rc.top;
 
-	const int mergin = window_height * 0.1;
-	const int board_size = window_height * 0.8;
+	auto [width, height] = GameFunction::GetWindowSize();
+
+	const int mergin = height * 0.1;
+	const int board_size = height * 0.8;
 	const int cell_size = board_size / 8;
 
 	std::uint64_t legal = board.LegalPublic();
