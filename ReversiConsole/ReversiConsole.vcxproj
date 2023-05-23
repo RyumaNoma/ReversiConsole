@@ -25,6 +25,7 @@
     <ClInclude Include="src\BitBoardUnitTest.hpp" />
     <ClInclude Include="src\Debug\Debug.hpp" />
     <ClInclude Include="src\GameAIFunction.hpp" />
+    <ClInclude Include="src\GameFunction.hpp" />
     <ClInclude Include="src\Human.hpp" />
     <ClInclude Include="src\MatchScene.hpp" />
     <ClInclude Include="src\MCTS.hpp" />
@@ -45,6 +46,7 @@
     <ClCompile Include="src\BitBoard_BitOperation.cpp" />
     <ClCompile Include="src\Debug\Debug.cpp" />
     <ClCompile Include="src\GameAIFunction.cpp" />
+    <ClCompile Include="src\GameFunction.cpp" />
     <ClCompile Include="src\Human.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MatchScene.cpp" />
@@ -147,6 +149,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)プロジェクトに追加すべきファイル_VC用;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -164,6 +167,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)プロジェクトに追加すべきファイル_VC用;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

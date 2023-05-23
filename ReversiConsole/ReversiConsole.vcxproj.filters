@@ -105,6 +105,9 @@
     <ClInclude Include="src\ResultScene.hpp">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameFunction.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Debug\Debug.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="src\ResultScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFunction.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
