@@ -5,6 +5,7 @@
 #include "MCTS.hpp"
 #include "Human.hpp"
 #include "Debug/Debug.hpp"
+#include "SceneManager.hpp"
 #include <ctime>
 
 MatchScene::MatchScene(SceneManager* manager)
@@ -15,6 +16,7 @@ MatchScene::MatchScene(SceneManager* manager)
 	, state_(MatchState::BeforeMatch)
 	, count_frame_(0)
 	, human_side_(0)
+	, is_pass_(false)
 	, Scene(manager)
 {
 }
@@ -47,9 +49,6 @@ void MatchScene::Draw() const
 	case MatchScene::MatchState::PlayAnimation:
 		DrawPlayAnimation();
 		break;
-	case MatchScene::MatchState::AfterMatch:
-		DrawAfterMatch();
-		break;
 	default:
 		break;
 	}
@@ -69,8 +68,6 @@ void MatchScene::Update()
 	case MatchScene::MatchState::PlayAnimation:
 		PlayAnimation();
 		break;
-	case MatchScene::MatchState::AfterMatch:
-		break;
 	default:
 		break;
 	}
@@ -88,14 +85,27 @@ void MatchScene::BeforeMatch()
 
 void MatchScene::Think()
 {
+	if (board_.IsFinish())
+	{
+		std::map<std::string, int> game_data;
+		game_data["Level"] = 1;// TODO: Level選択機能
+		game_data["NumberHumanStones"] = HumanStones();
+		game_data["NumberAIStones"] = AIStones();
+		game_data["HumanResult"] = HumanResult();
+		game_data["Turn"] = turn_;
+
+		manager_->Change("Result", game_data);
+	}
 	if (board_.LegalPublic())
 	{
 		Point action = player_[turn_ % 2]->Act(board_);
 		board_.Act(action);
+		is_pass_ = false;
 	}
 	else // pass
 	{
 		board_.Swap();
+		is_pass_ = true;
 	}
 	// ターン終了処理
 	++turn_;
@@ -122,12 +132,63 @@ void MatchScene::Init()
 	}
 	turn_ = 0;
 	state_ = MatchState::BeforeMatch;
+	is_pass_ = false;
 }
 
 void MatchScene::SetPlayers(Player* first_player, Player* second_player)
 {
 	player_[0] = first_player;
 	player_[1] = second_player;
+}
+
+int MatchScene::HumanResult() const
+{
+	double result;
+	if (turn_ % 2 == human_side_)
+	{
+		result = board_.Result();
+	}
+	else
+	{
+		result = 1 - board_.Result();
+	}
+
+	if (result == 1.0)
+	{
+		return 1;
+	}
+	else if (result == 0.5)
+	{
+		return 0;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+int MatchScene::HumanStones() const
+{
+	if (turn_ % 2 == human_side_)
+	{
+		return board_.CountStones(false);
+	}
+	else
+	{
+		return board_.CountStones(true);
+	}
+}
+
+int MatchScene::AIStones() const
+{
+	if (turn_ % 2 == human_side_)
+	{
+		return board_.CountStones(true);
+	}
+	else
+	{
+		return board_.CountStones(false);
+	}
 }
 
 void MatchScene::DrawBeforeMatch() const
@@ -180,37 +241,42 @@ void MatchScene::DrawPlayAnimation() const
 	const int board_size = height * 0.8;
 	const int cell_size = board_size / 8;
 
-	// 前の盤面との差分を強調する
-	std::uint64_t diff = 0;
-	for (int i = 0; i < 1; ++i)
-	{
-		diff |= (board_.board_[i] ^ last_board_.board_[1 - i]);
-	}
+	
 	DrawBoard(width, height);
-	for (int y = 0; y < 8; ++y)
+
+	if (is_pass_)
 	{
-		for (int x = 0; x < 8; ++x)
+		// TODO: 中央ぞろえ
+		int left = 0;
+		int right = width;
+		int top = height / 3;
+		int bottom = height / 3 * 2;
+		DrawBox(left, top, right, bottom, GetColor(244, 173, 163), 1);
+		SetFontSize(300);
+		DrawString(left, top, "PASS", GetColor(0, 0, 0));
+	}
+	else
+	{
+		// 前の盤面との差分を強調する
+		std::uint64_t diff = 0;
+		for (int i = 0; i < 1; ++i)
 		{
-			if (diff & 1)
+			diff |= (board_.board_[i] ^ last_board_.board_[1 - i]);
+		}
+		for (int y = 0; y < 8; ++y)
+		{
+			for (int x = 0; x < 8; ++x)
 			{
-				int center_x = mergin + cell_size * x + cell_size / 2;
-				int center_y = mergin + cell_size * y + cell_size / 2;
-				DrawCircle(center_x, center_y, cell_size / 6, GetColor(244, 173, 163), true);
+				if (diff & 1)
+				{
+					int center_x = mergin + cell_size * x + cell_size / 2;
+					int center_y = mergin + cell_size * y + cell_size / 2;
+					DrawCircle(center_x, center_y, cell_size / 6, GetColor(244, 173, 163), true);
+				}
+				diff >>= 1;
 			}
-			diff >>= 1;
 		}
 	}
-}
-
-void MatchScene::DrawAfterMatch() const
-{
-	// 画面サイズの取得
-	RECT rc;
-	GetWindowRect(GetDesktopWindow(), &rc);
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
-
-	DrawBoard(width, height);
 }
 
 // TODO: 縦画面に対応(min(width, height))
