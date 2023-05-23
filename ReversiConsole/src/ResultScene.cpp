@@ -47,7 +47,8 @@ void ResultScene::Draw() const
 	DrawFormatString(0, TitleFontSize + NormalFontSize, GetColor(255, 255, 255), "You: %d Stones", human_stones_);
 	DrawFormatString(0, TitleFontSize + NormalFontSize * 2, GetColor(255, 255, 255), " AI: %d Stones", ai_stones_);
 
-	DrawString(0, TitleFontSize + NormalFontSize * 3, "Press space to go to Title", GetColor(255, 255, 255));
+	DrawString(0, TitleFontSize + NormalFontSize * 4, "Press space key to go to Title", GetColor(255, 255, 255));
+	DrawString(0, TitleFontSize + NormalFontSize * 5, "Press Q to Exit Game", GetColor(255, 255, 255));
 }
 
 void ResultScene::Update()
@@ -55,5 +56,9 @@ void ResultScene::Update()
 	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
 		manager_->Change("Title", std::map<std::string, int>());
+	}
+	if (CheckHitKey(KEY_INPUT_Q))
+	{
+		manager_->Exit();
 	}
 }

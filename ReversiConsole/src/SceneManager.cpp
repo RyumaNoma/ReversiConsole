@@ -7,6 +7,7 @@ SceneManager::SceneManager()
 	, now_scene_()
 	, game_data_()
 	, changed_(true)
+	, valid_exec_(true)
 {
 }
 
@@ -77,7 +78,17 @@ bool SceneManager::Empty() const
 	return scenes_.empty();
 }
 
+void SceneManager::Exit()
+{
+	valid_exec_ = false;
+}
+
 size_t SceneManager::Size() const
 {
 	return scenes_.size();
+}
+
+SceneManager::operator bool() const
+{
+	return valid_exec_;
 }
