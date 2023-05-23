@@ -60,13 +60,13 @@ void MatchScene::Update()
 	switch (state_)
 	{
 	case MatchState::BeforeMatch:
-		BeforeMatch();
+		UpdateBeforeMatch();
 		break;
 	case MatchScene::MatchState::Think:
-		Think();
+		UpdateThink();
 		break;
 	case MatchScene::MatchState::PlayAnimation:
-		PlayAnimation();
+		UpdatePlayAnimation();
 		break;
 	default:
 		break;
@@ -74,7 +74,7 @@ void MatchScene::Update()
 	++count_frame_;
 }
 
-void MatchScene::BeforeMatch()
+void MatchScene::UpdateBeforeMatch()
 {
 	if (count_frame_ == FRAMES_PER_SECOND)
 	{
@@ -83,7 +83,7 @@ void MatchScene::BeforeMatch()
 	}
 }
 
-void MatchScene::Think()
+void MatchScene::UpdateThink()
 {
 	if (board_.IsFinish())
 	{
@@ -114,7 +114,7 @@ void MatchScene::Think()
 	count_frame_ = 0;
 }
 
-void MatchScene::PlayAnimation()
+void MatchScene::UpdatePlayAnimation()
 {
 	if (count_frame_ == FRAMES_PER_SECOND)
 	{

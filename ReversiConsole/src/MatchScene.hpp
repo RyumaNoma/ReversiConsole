@@ -16,9 +16,9 @@ public:
 	void Draw() const override;
 	void Update() override;
 	
-	void BeforeMatch();
-	void Think();
-	void PlayAnimation();
+	void UpdateBeforeMatch();
+	void UpdateThink();
+	void UpdatePlayAnimation();
 	
 	void Init();
 	void SetPlayers(Player* first_player, Player* second_player);
