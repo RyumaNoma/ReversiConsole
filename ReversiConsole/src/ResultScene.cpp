@@ -15,8 +15,8 @@ void ResultScene::OnChanged(const std::map<std::string, int>& param)
 {
 	level_ = param.at("Level");
 	human_result_ = param.at("HumanResult");
-	human_stones_ = param.at("HumanStones");
-	ai_stones_ = param.at("AIStones");
+	human_stones_ = param.at("NumberHumanStones");
+	ai_stones_ = param.at("NumberAIStones");
 }
 
 void ResultScene::Draw() const
