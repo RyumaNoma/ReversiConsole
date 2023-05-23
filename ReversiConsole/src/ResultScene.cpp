@@ -23,7 +23,7 @@ void ResultScene::Draw() const
 {
 	// Press space to title
 	const int TitleFontSize = 300;
-	const int NormalFontSize = 200;
+	const int NormalFontSize = 100;
 	
 	SetFontSize(TitleFontSize);
 	DrawString(0, 0, "Result", GetColor(255, 255, 255));
@@ -45,9 +45,9 @@ void ResultScene::Draw() const
 	}
 	// êŒÇÃêî
 	DrawFormatString(0, TitleFontSize + NormalFontSize, GetColor(255, 255, 255), "You: %d Stones", human_stones_);
-	DrawFormatString(0, TitleFontSize + NormalFontSize, GetColor(255, 255, 255), " AI: %d Stones", ai_stones_);
+	DrawFormatString(0, TitleFontSize + NormalFontSize * 2, GetColor(255, 255, 255), " AI: %d Stones", ai_stones_);
 
-	DrawString(0, TitleFontSize + NormalFontSize * 2, "Press space to go to Title", GetColor(255, 255, 255));
+	DrawString(0, TitleFontSize + NormalFontSize * 3, "Press space to go to Title", GetColor(255, 255, 255));
 }
 
 void ResultScene::Update()
