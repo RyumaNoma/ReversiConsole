@@ -45,8 +45,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ChangeWindowMode(true);
 	// タイトル
 	SetMainWindowText("Reversi");
-	// カーソルの表示設定：オン
-	SetMouseDispFlag(true);
 	// 初期画面サイズをデスクトップサイズに合わせる
 	GameFunction::ChangeToFullScreenMode();
 	// 背景色の決定
@@ -55,7 +53,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if (DxLib_Init() == -1)
 	{
 		return -1;
-	}	
+	}
+
+	// カーソルの表示設定：オン
+	SetMouseDispFlag(true);
 
 	SceneManager manager;
 	TitleScene ts(&manager);
