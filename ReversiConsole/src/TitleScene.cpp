@@ -12,13 +12,15 @@ void TitleScene::Draw() const
 {
 	// ‰æ–ÊƒTƒCƒY‚ÌŽæ“¾
 	auto [width, height] = GameFunction::GetWindowSize();
+	const int TitleFontSize = static_cast<int>(height * 0.1);
+	const int NormalFontSize = static_cast<int>(height * 0.08);
 
 	DrawBox(0, 0, width, height, Color::TITLE_BACKGROUND, true);
-	SetFontSize(100);
+	SetFontSize(TitleFontSize);
 	DrawString(0, 0, "Reversi", Color::GAME_TITLE);
-	SetFontSize(80);
-	DrawString(0, 100, "-Press Enter key to start-", Color::TITLE_EXPLAIN_KEY_CHAR);
-	DrawString(0, 180, "-Press Q key to start-", Color::TITLE_EXPLAIN_KEY_CHAR);
+	SetFontSize(NormalFontSize);
+	DrawString(0, TitleFontSize, "-Press Enter key to start-", Color::TITLE_EXPLAIN_KEY_CHAR);
+	DrawString(0, TitleFontSize + NormalFontSize, "-Press Q key to start-", Color::TITLE_EXPLAIN_KEY_CHAR);
 }
 
 void TitleScene::Update()

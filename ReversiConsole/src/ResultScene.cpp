@@ -2,6 +2,7 @@
 #include "SceneManager.hpp"
 #include "DxLib.h"
 #include "Color.hpp"
+#include "GameFunction.hpp"
 
 ResultScene::ResultScene(SceneManager* manager)
 	: level_(0)
@@ -23,8 +24,9 @@ void ResultScene::OnChanged(const std::map<std::string, int>& param)
 void ResultScene::Draw() const
 {
 	// Press space to title
-	const int TitleFontSize = 300;
-	const int NormalFontSize = 100;
+	auto [width, height] = GameFunction::GetWindowSize();
+	const int TitleFontSize = static_cast<int>(height * 0.25);
+	const int NormalFontSize = static_cast<int>(height * 0.1);
 	
 	SetFontSize(TitleFontSize);
 	DrawString(0, 0, "Result", Color::RESULT_TITLE_CHAR);

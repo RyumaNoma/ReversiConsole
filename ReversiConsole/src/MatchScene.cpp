@@ -199,32 +199,36 @@ void MatchScene::DrawBeforeMatch() const
 {
 	// 画面サイズの取得
 	auto [width, height] = GameFunction::GetWindowSize();
+	const int BandTop = static_cast<int>(height * 0.3);
+	const int BandBottom = static_cast<int>(height * 0.7);
+	const int FontSize = static_cast<int>(height * 0.1);
 
 	DrawBoard(width, height);
-	DrawBox(0, height * 0.3, width, height * 0.7, Color::BEFORE_MATCH_EFFECT_BAND, true);
+	DrawBox(0, BandTop, width, BandBottom, Color::BEFORE_MATCH_EFFECT_BAND, true);
 	// TODO: 中央ぞろえ
-	SetFontSize(64);
+	SetFontSize(FontSize);
 	std::string human_side_str = (human_side_) ? "後手(白)" : "先手(黒)";
-	DrawString(0, height * 0.3, "対戦開始", Color::BEFORE_MATCH_EFFECT_CHAR);
-	DrawString(0, height * 0.3 + 64, std::string("あなたは　" + human_side_str).c_str(), Color::BEFORE_MATCH_EFFECT_CHAR);
+	DrawString(0, BandTop + FontSize, "対戦開始", Color::BEFORE_MATCH_EFFECT_CHAR);
+	DrawString(0, BandTop + FontSize * 2, std::string("あなたは　" + human_side_str).c_str(), Color::BEFORE_MATCH_EFFECT_CHAR);
 }
 
 void MatchScene::DrawThink() const
 {
 	// 画面サイズの取得
 	auto [width, height] = GameFunction::GetWindowSize();
-	const int mergin = height * 0.1;
-	const int board_size = height * 0.8;
-	const int cell_size = board_size / 8;
+	const int Mergin = static_cast<int>(height * 0.1);
+	const int BoardSize = static_cast<int>(height * 0.8);
+	const int CellSize = BoardSize / 8;
+	const int EffectCircleRound = CellSize / 6;
 
 	DrawBoard(width, height);
 	// 合法手の表示
 	std::vector<Point> legal_actions = board_.LegalActions();
 	for (const Point& p : legal_actions)
 	{
-		int x = mergin + p.X() * cell_size + cell_size / 2;
-		int y = mergin + p.Y() * cell_size + cell_size / 2;
-		DrawCircle(x, y, cell_size / 6, Color::LEGAL_ACTION_EFFECT);
+		const int x = Mergin + p.X() * CellSize + CellSize / 2;
+		const int y = Mergin + p.Y() * CellSize + CellSize / 2;
+		DrawCircle(x, y, EffectCircleRound, Color::LEGAL_ACTION_EFFECT);
 	}
 }
 
@@ -232,9 +236,10 @@ void MatchScene::DrawPlayAnimation() const
 {
 	// 画面サイズの取得
 	auto [width, height] = GameFunction::GetWindowSize();
-	const int mergin = height * 0.1;
-	const int board_size = height * 0.8;
-	const int cell_size = board_size / 8;
+	const int Mergin = static_cast<int>(height * 0.1);
+	const int BoardSize = static_cast<int>(height * 0.8);
+	const int CellSize = BoardSize / 8;
+	const int EffectCircleRound = CellSize / 6;
 
 	
 	DrawBoard(width, height);
@@ -242,13 +247,13 @@ void MatchScene::DrawPlayAnimation() const
 	if (is_pass_)
 	{
 		// TODO: 中央ぞろえ
-		int left = 0;
-		int right = width;
-		int top = height / 3;
-		int bottom = height / 3 * 2;
-		DrawBox(left, top, right, bottom, Color::PASS_EFFECT_BAND, 1);
+		const int Left = 0;
+		const int Right = width;
+		const int Top = height / 3;
+		const int Bottom = height / 3 * 2;
+		DrawBox(Left, Top, Right, Bottom, Color::PASS_EFFECT_BAND, 1);
 		SetFontSize(300);
-		DrawString(left, top, "PASS", Color::PASS_EFFECT_CHAR);
+		DrawString(Left, Top, "PASS", Color::PASS_EFFECT_CHAR);
 	}
 	else
 	{
@@ -264,9 +269,9 @@ void MatchScene::DrawPlayAnimation() const
 			{
 				if (diff & 1)
 				{
-					int center_x = mergin + cell_size * x + cell_size / 2;
-					int center_y = mergin + cell_size * y + cell_size / 2;
-					DrawCircle(center_x, center_y, cell_size / 6, Color::SWAP_EFFECT, true);
+					const int CenterX = Mergin + x * CellSize + CellSize / 2;
+					const int CenterY = Mergin + y * CellSize + CellSize / 2;
+					DrawCircle(CenterX, CenterY, EffectCircleRound, Color::SWAP_EFFECT, true);
 				}
 				diff >>= 1;
 			}
@@ -277,22 +282,29 @@ void MatchScene::DrawPlayAnimation() const
 // TODO: 縦画面に対応(min(width, height))
 void MatchScene::DrawBoard(int window_width, int window_height) const
 {
-	const int mergin = window_height * 0.1;
-	const int board_size = window_height * 0.8;
-	const int cell_size = board_size / 8;
+	const int Mergin = static_cast<int>(window_height * 0.1);
+	const int BoardSize = static_cast<int>(window_height * 0.8);
+	const int CellSize = BoardSize / 8;
+	const int EffectCircleRound = CellSize / 6;
+
+	const int BoardLeft = Mergin;
+	const int BoardRight = BoardLeft + BoardSize;
+	const int BoardTop = Mergin;
+	const int BoardBottom = BoardTop + BoardSize;
 	// 背景盤を描画
-	DrawBox(mergin, mergin, mergin + board_size, mergin + board_size, Color::BOARD_BACKGROUND, true);
+	DrawBox(BoardLeft, BoardTop, BoardRight, BoardBottom, Color::BOARD_BACKGROUND, true);
 	// セルを描画
-	int begin = mergin;
-	int end = mergin + board_size;
+	const int Begin = Mergin;
+	const int End = Begin + BoardSize;
 	// 縦線
 	for (int i = 0; i < 9; ++i)
 	{
-		int x = mergin + cell_size * i;
-		DrawLine(x, begin, x, end, Color::BOARD_LINE, 1);// 縦線
-		DrawLine(begin, x, end, x, Color::BOARD_LINE, 1);// 横線
+		const int Step = Mergin + CellSize * i;
+		DrawLine(Step, Begin, Step, End, Color::BOARD_LINE, 1);// 縦線
+		DrawLine(Begin, Step, End, Step, Color::BOARD_LINE, 1);// 横線
 	}
 	// コマを表示
+	const int StoneRound = CellSize / 2 - 2;
 	std::uint64_t mask = 0x1;
 	for (int y = 0; y < 8; ++y)
 	{
@@ -311,13 +323,13 @@ void MatchScene::DrawBoard(int window_width, int window_height) const
 				color[1] = Color::FIRST_PLAYER_STONE;
 			}
 			// 描画
-			int pos_x = mergin + cell_size * x + cell_size / 2;
-			int pos_y = mergin + cell_size * y + cell_size / 2;
+			const int PosX = Mergin + CellSize * x + CellSize / 2;
+			const int PosY = Mergin + CellSize * y + CellSize / 2;
 			for (int i = 0; i < 2; ++i)
 			{
 				if (board_.board_[i] & mask)
 				{
-					DrawCircle(pos_x, pos_y, cell_size / 2 - 1, color[i]);
+					DrawCircle(PosX, PosY, StoneRound, color[i]);
 				}
 			}
 			mask <<= 1;
