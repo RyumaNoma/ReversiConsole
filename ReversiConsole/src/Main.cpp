@@ -42,10 +42,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	TitleScene ts(&manager);
 	MatchScene ms(&manager);
 	ResultScene rs(&manager);
-	assert(manager.Add("Title", &ts));
-	assert(manager.Add("Match", &ms));
-	assert(manager.Add("Result", &rs));
-	assert(manager.SetStartUpScene("Title"));
+	manager.Add("Title", &ts);
+	manager.Add("Match", &ms);
+	manager.Add("Result", &rs);
+	manager.SetStartUpScene("Title");
 
 	Timer t;
 	int loop = 0;
