@@ -10,17 +10,30 @@ class MatchScene
 	: public Scene
 {
 public:
+	enum class MatchState
+	{
+		BeforeMatch,
+		Think,
+		PlayAnimation
+	};
+public:
 	MatchScene(SceneManager* manager);
 	~MatchScene() = default;
 	void OnChanged(const std::map<std::string, int>& param) override;
 	void Draw() const override;
 	void Update() override;
-	
-	void UpdateBeforeMatch();
-	void UpdateThink();
-	void UpdatePlayAnimation();
-	
+
+	/// <summary>
+	/// 変数を初期化する．
+	/// 毎試合前に呼び出す
+	/// </summary>
 	void Init();
+
+	/// <summary>
+	/// 先手と後手のプレイヤーをそれぞれ設定する．
+	/// </summary>
+	/// <param name="first_player">先手のプレイヤー</param>
+	/// <param name="second_player">後手のプレイヤー</param>
 	void SetPlayers(Player* first_player, Player* second_player);
 
 	/// <summary>
@@ -42,18 +55,16 @@ public:
 	/// <returns>AI側の石の数</returns>
 	int AIStones() const;
 
-	// 描画
+	// サブ更新関数
+	void UpdateBeforeMatch();
+	void UpdateThink();
+	void UpdatePlayAnimation();
+
+	// サブ描画関数
 	void DrawBeforeMatch() const;
 	void DrawThink() const;
 	void DrawPlayAnimation() const;
 	void DrawBoard(int window_width, int window_height) const;
-	
-	enum class MatchState
-	{
-		BeforeMatch,
-		Think,
-		PlayAnimation
-	};
 private:
 	BitBoard last_board_;
 	BitBoard board_;
