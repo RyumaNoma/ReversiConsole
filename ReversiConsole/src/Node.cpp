@@ -119,14 +119,14 @@ Point Node::SelectBestAction() const
 double Node::UCB1(int N) const
 {
 	if (N == 0 || n_ == 0) return 10000;
-	return w_ / n_ + C_ * std::sqrt(2 * log(N) / n_);
+	return (1.0 - w_ / n_) + C_ * std::sqrt(2 * log(N) / n_);
 }
 
 double Node::UCB1_Tuned(int N) const
 {
 	if (N == 0 || n_ == 0) return 10000;
-	const double mean = w_ / n_;
-	const double dispersion = ww_ / n_ - mean * mean;
+	const double mean = (1 - w_ / n_);
+	const double dispersion = (1 - ww_ / n_) - mean * mean;
 	const double V = dispersion + std::sqrt(2 * log(N) / n_);
 	return mean + C_ * std::sqrt(log(N) / n_ * std::min(0.25, V));
 }
@@ -138,8 +138,8 @@ std::ostream& operator<<(std::ostream& os, const Node& node)
 		<< "n:" << node.n_ << std::endl
 		<< "w:" << node.w_ << std::endl
 		<< "ww:" << node.ww_ << std::endl
-		<< "children:" << node.children_.size()
-		<< "•½‹Ï:" << (mean = node.w_ / node.n_) << std::endl
-		<< "•W€•Î·:" << std::sqrt(node.ww_ / node.n_ - mean * mean);
+		<< "children:" << node.children_.size() << std::endl
+		<< "•½‹Ï:" << (mean = 1 - node.w_ / node.n_) << std::endl
+		<< "•W€•Î·:" << std::sqrt((1 - node.ww_ / node.n_) - mean * mean);
 	return os;
 }
