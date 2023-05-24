@@ -13,27 +13,6 @@
 #include "Timer/Timer.hpp"
 #include "GameFunction.hpp"
 
-//DISPLAYMODEDATA ModeData;
-//int i, ModeNum;
-//
-//int DesktopW, DesktopH;
-//GetDefaultState(&DesktopW, &DesktopH, NULL);
-//SetGraphMode(DesktopW, DesktopH, 32);
-//Debug::Print(DesktopW, DesktopH);
-//
-//// ディスプレイモードの数を取得する
-//ModeNum = GetDisplayModeNum();
-//
-//// ディスプレイモードの数だけループする
-//for (i = 0; i < ModeNum; i++)
-//{
-//	// ディスプレイモードの情報を取得する
-//	ModeData = GetDisplayMode(i);
-//
-//	// 画面にディスプレイモードの情報を描画する
-//	DrawFormatString(i / 40 * 128, (i % 40) * 11, GetColor(255, 255, 255), "%dx%d %dbit %dHz",
-//		ModeData.Width, ModeData.Height, ModeData.ColorBitDepth, ModeData.RefreshRate);
-//}
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
