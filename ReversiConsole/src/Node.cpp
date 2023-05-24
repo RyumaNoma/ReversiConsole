@@ -78,6 +78,7 @@ void Node::Expand(const BitBoard& board, Allocator<Node>& allocator)
 		if (ptr == nullptr)
 		{
 			std::cout << "NULL POINTER" << std::endl;
+			exit(-1);
 		}
 		new(ptr) Node(action);
 		children_.push_back(ptr);
