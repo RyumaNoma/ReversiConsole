@@ -1,6 +1,8 @@
 #include "TitleScene.hpp"
 #include "DxLib.h"
+// シーン関連
 #include "SceneManager.hpp"
+// 汎用
 #include "GameFunction.hpp"
 #include "Color.hpp"
 

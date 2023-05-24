@@ -1,14 +1,17 @@
 #include "MatchScene.hpp"
+#include <ctime>
 #include "DxLib.h"
+// シーン関連
+#include "SceneManager.hpp"
+// プレイヤー関連
 #include "Player.hpp"
-#include "Point/Point.hpp"
 #include "MCTS.hpp"
 #include "Human.hpp"
+// 汎用
+#include "Point/Point.hpp"
 #include "Debug/Debug.hpp"
-#include "SceneManager.hpp"
 #include "GameFunction.hpp"
 #include "Color.hpp"
-#include <ctime>
 
 MatchScene::MatchScene(SceneManager* manager)
 	: board_()

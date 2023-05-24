@@ -1,10 +1,12 @@
 #pragma once
 #include "Player.hpp"
+// MCTS専用
+#include "Node.hpp"
+// 汎用
 #include "Point/Point.hpp"
 #include "Allocator/Allocator.hpp"
 #include "Random.hpp"
 #include "Timer/Timer.hpp"
-#include "Node.hpp"
 
 /// <summary>
 /// モンテカルロ木探索をするプレイヤー

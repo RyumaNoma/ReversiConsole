@@ -1,5 +1,4 @@
 #include "SceneManager.hpp"
-#include "Debug/Debug.hpp"
 
 SceneManager::SceneManager()
 	: scenes_()

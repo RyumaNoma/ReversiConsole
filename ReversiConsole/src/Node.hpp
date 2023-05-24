@@ -1,6 +1,6 @@
 #pragma once
-#include "Point/Point.hpp"
 #include <vector>
+#include "Point/Point.hpp"
 #include "Allocator/Allocator.hpp"
 
 class BitBoard;

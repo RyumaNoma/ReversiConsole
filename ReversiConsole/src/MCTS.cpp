@@ -1,5 +1,6 @@
 #include "MCTS.hpp"
 #include "Node.hpp"
+// ビットボード関連
 #include "BitBoard.hpp"
 
 MCTS::MCTS()

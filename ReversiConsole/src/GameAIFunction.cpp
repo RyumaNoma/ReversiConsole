@@ -1,6 +1,8 @@
 #include "GameAIFunction.hpp"
-#include "Point/Point.hpp"
+// ビットボード
 #include "BitBoard.hpp"
+// 汎用
+#include "Point/Point.hpp"
 #include "Random.hpp"
 
 Point GameAIFunction::RandomAction(BitBoard* board, Random* random)

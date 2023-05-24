@@ -1,6 +1,9 @@
 #include "Node.hpp"
+// ビットボード関連
 #include "BitBoard.hpp"
+// ゲームAI関連
 #include "GameAIFunction.hpp"
+// 汎用
 #include "Random.hpp"
 
 Node::Node()

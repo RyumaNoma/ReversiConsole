@@ -1,8 +1,10 @@
 #include "Human.hpp"
-#include <iostream>
-#include "Point/Point.hpp"
-#include "BitBoard.hpp"
 #include "DxLib.h"
+#include <iostream>
+// ビットボード関連
+#include "BitBoard.hpp"
+// 汎用
+#include "Point/Point.hpp"
 #include "GameFunction.hpp"
 
 void Human::Init()
