@@ -17,11 +17,10 @@ Point Human::Act(const BitBoard& board)
 	return LeftUp(board);
 
 	// ‰æ–ÊƒTƒCƒY‚ÌŽæ“¾
-
 	auto [width, height] = GameFunction::GetWindowSize();
 
 	const int Mergin = static_cast<int>(height * 0.1);
-	const int BoardSize = static_cast<int>(height * 0.1);
+	const int BoardSize = static_cast<int>(height * 0.8);
 	const int CellSize = BoardSize / 8;
 
 	std::uint64_t legal = board.LegalPublic();
