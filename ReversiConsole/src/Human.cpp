@@ -18,9 +18,9 @@ Point Human::Act(const BitBoard& board)
 
 	auto [width, height] = GameFunction::GetWindowSize();
 
-	const int mergin = height * 0.1;
-	const int board_size = height * 0.8;
-	const int cell_size = board_size / 8;
+	const int Mergin = static_cast<int>(height * 0.1);
+	const int BoardSize = static_cast<int>(height * 0.1);
+	const int CellSize = BoardSize / 8;
 
 	std::uint64_t legal = board.LegalPublic();
 	while (true)
@@ -31,11 +31,11 @@ Point Human::Act(const BitBoard& board)
 			int mouse_x, mouse_y;
 			GetMousePoint(&mouse_x, &mouse_y);
 			
-			if (mouse_x < mergin || mergin + board_size < mouse_x) continue;
-			if (mouse_y < mergin || mergin + board_size < mouse_y) continue;
+			if (mouse_x < Mergin || Mergin + BoardSize < mouse_x) continue;
+			if (mouse_y < Mergin || Mergin + BoardSize < mouse_y) continue;
 
-			int x = (mouse_x - mergin) / cell_size;
-			int y = (mouse_y - mergin) / cell_size;
+			int x = (mouse_x - Mergin) / CellSize;
+			int y = (mouse_y - Mergin) / CellSize;
 			int hash = y * 8 + x;
 			if ((legal & (1ULL << hash)) == 0) continue;
 			return Point(x, y);
