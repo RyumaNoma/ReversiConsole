@@ -3,6 +3,10 @@
 class Color
 {
 public:
+	// 全体
+	static constexpr unsigned int BACKGROUND_R = 0x64;
+	static constexpr unsigned int BACKGROUND_G = 0x64;
+	static constexpr unsigned int BACKGROUND_B = 0x00;
 	// タイトル
 	static constexpr unsigned int GAME_TITLE = 0xFFFFFF;
 	static constexpr unsigned int TITLE_EXPLAIN_KEY_CHAR = 0xFFFFFF;

@@ -12,6 +12,7 @@
 #include "Point/Point.hpp"
 #include "Timer/Timer.hpp"
 #include "GameFunction.hpp"
+#include "Color.hpp"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -27,7 +28,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// 初期画面サイズをデスクトップサイズに合わせる
 	GameFunction::ChangeToFullScreenMode();
 	// 背景色の決定
-	SetBackgroundColor(100, 100, 0);
+	SetBackgroundColor(Color::BACKGROUND_R, Color::BACKGROUND_G, Color::BACKGROUND_B);
 
 	if (DxLib_Init() == -1)
 	{
