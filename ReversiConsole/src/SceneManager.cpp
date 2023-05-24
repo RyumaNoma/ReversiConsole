@@ -1,4 +1,5 @@
 #include "SceneManager.hpp"
+#include "DxLib.h"
 
 SceneManager::SceneManager()
 	: scenes_()
@@ -7,11 +8,21 @@ SceneManager::SceneManager()
 	, game_data_()
 	, changed_(true)
 	, valid_exec_(true)
+	, frame_time_queue_()
 {
 }
 
 bool SceneManager::Update()
 {
+	// FPSŒv‘ª
+	auto now = std::chrono::system_clock::now();
+	frame_time_queue_.push(now);
+	while (std::chrono::duration_cast<std::chrono::milliseconds>(now - frame_time_queue_.front()).count() > 1000)
+	{
+		frame_time_queue_.pop();
+	}
+	printfDx("%d\n", static_cast<int>(frame_time_queue_.size()));
+
 	if (now_scene_ == "")
 	{
 		if (startup_scene_ == "")

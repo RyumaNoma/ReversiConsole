@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <map>
+#include <queue>
+#include <chrono>
 #include "Scene.hpp"
 
 class SceneManager
@@ -65,4 +67,5 @@ private:
 	bool changed_;
 	std::map<std::string, int> game_data_;
 	bool valid_exec_;
+	std::queue<std::chrono::system_clock::time_point> frame_time_queue_;
 };
