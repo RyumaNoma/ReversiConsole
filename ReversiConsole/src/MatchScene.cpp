@@ -7,6 +7,7 @@
 #include "Debug/Debug.hpp"
 #include "SceneManager.hpp"
 #include "GameFunction.hpp"
+#include "Color.hpp"
 #include <ctime>
 
 MatchScene::MatchScene(SceneManager* manager)
@@ -200,12 +201,12 @@ void MatchScene::DrawBeforeMatch() const
 	auto [width, height] = GameFunction::GetWindowSize();
 
 	DrawBoard(width, height);
-	DrawBox(0, height * 0.3, width, height * 0.7, GetColor(255, 0, 0), true);
+	DrawBox(0, height * 0.3, width, height * 0.7, Color::BEFORE_MATCH_EFFECT_BAND, true);
 	// TODO: ’†‰›‚¼‚ë‚¦
 	SetFontSize(64);
 	std::string human_side_str = (human_side_) ? "ŒãŽè(”’)" : "æŽè(•)";
-	DrawString(0, height * 0.3, "‘ÎíŠJŽn", GetColor(255, 255, 255), GetColor(255, 255, 255));
-	DrawString(0, height * 0.3 + 64, std::string("‚ ‚È‚½‚Í@" + human_side_str).c_str(), GetColor(255, 255, 255), GetColor(255, 255, 255));
+	DrawString(0, height * 0.3, "‘ÎíŠJŽn", Color::BEFORE_MATCH_EFFECT_CHAR);
+	DrawString(0, height * 0.3 + 64, std::string("‚ ‚È‚½‚Í@" + human_side_str).c_str(), Color::BEFORE_MATCH_EFFECT_CHAR);
 }
 
 void MatchScene::DrawThink() const
@@ -223,7 +224,7 @@ void MatchScene::DrawThink() const
 	{
 		int x = mergin + p.X() * cell_size + cell_size / 2;
 		int y = mergin + p.Y() * cell_size + cell_size / 2;
-		DrawCircle(x, y, cell_size / 6, GetColor(192, 192, 192));
+		DrawCircle(x, y, cell_size / 6, Color::LEGAL_ACTION_EFFECT);
 	}
 }
 
@@ -245,9 +246,9 @@ void MatchScene::DrawPlayAnimation() const
 		int right = width;
 		int top = height / 3;
 		int bottom = height / 3 * 2;
-		DrawBox(left, top, right, bottom, GetColor(244, 173, 163), 1);
+		DrawBox(left, top, right, bottom, Color::PASS_EFFECT_BAND, 1);
 		SetFontSize(300);
-		DrawString(left, top, "PASS", GetColor(0, 0, 0));
+		DrawString(left, top, "PASS", Color::PASS_EFFECT_CHAR);
 	}
 	else
 	{
@@ -265,7 +266,7 @@ void MatchScene::DrawPlayAnimation() const
 				{
 					int center_x = mergin + cell_size * x + cell_size / 2;
 					int center_y = mergin + cell_size * y + cell_size / 2;
-					DrawCircle(center_x, center_y, cell_size / 6, GetColor(244, 173, 163), true);
+					DrawCircle(center_x, center_y, cell_size / 6, Color::SWAP_EFFECT, true);
 				}
 				diff >>= 1;
 			}
@@ -280,7 +281,7 @@ void MatchScene::DrawBoard(int window_width, int window_height) const
 	const int board_size = window_height * 0.8;
 	const int cell_size = board_size / 8;
 	// ”wŒi”Õ‚ð•`‰æ
-	DrawBox(mergin, mergin, mergin + board_size, mergin + board_size, GetColor(0, 255, 0), true);
+	DrawBox(mergin, mergin, mergin + board_size, mergin + board_size, Color::BOARD_BACKGROUND, true);
 	// ƒZƒ‹‚ð•`‰æ
 	int begin = mergin;
 	int end = mergin + board_size;
@@ -288,8 +289,8 @@ void MatchScene::DrawBoard(int window_width, int window_height) const
 	for (int i = 0; i < 9; ++i)
 	{
 		int x = mergin + cell_size * i;
-		DrawLine(x, begin, x, end, GetColor(0, 0, 0), 1);// cü
-		DrawLine(begin, x, end, x, GetColor(0, 0, 0), 1);// ‰¡ü
+		DrawLine(x, begin, x, end, Color::BOARD_LINE, 1);// cü
+		DrawLine(begin, x, end, x, Color::BOARD_LINE, 1);// ‰¡ü
 	}
 	// ƒRƒ}‚ð•\Ž¦
 	std::uint64_t mask = 0x1;
@@ -301,13 +302,13 @@ void MatchScene::DrawBoard(int window_width, int window_height) const
 			unsigned int color[2] = { 0, 0 };
 			if (turn_ % 2 == 0)
 			{
-				color[0] = GetColor(0, 0, 0);
-				color[1] = GetColor(255, 255, 255);
+				color[0] = Color::FIRST_PLAYER_STONE;
+				color[1] = Color::SECOND_PLAYER_STONE;
 			}
 			else
 			{
-				color[0] = GetColor(255, 255, 255);
-				color[1] = GetColor(0, 0, 0);
+				color[0] = Color::SECOND_PLAYER_STONE;
+				color[1] = Color::FIRST_PLAYER_STONE;
 			}
 			// •`‰æ
 			int pos_x = mergin + cell_size * x + cell_size / 2;

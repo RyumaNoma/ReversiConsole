@@ -1,6 +1,7 @@
 #include "ResultScene.hpp"
 #include "SceneManager.hpp"
 #include "DxLib.h"
+#include "Color.hpp"
 
 ResultScene::ResultScene(SceneManager* manager)
 	: level_(0)
@@ -26,29 +27,29 @@ void ResultScene::Draw() const
 	const int NormalFontSize = 100;
 	
 	SetFontSize(TitleFontSize);
-	DrawString(0, 0, "Result", GetColor(255, 255, 255));
+	DrawString(0, 0, "Result", Color::RESULT_TITLE_CHAR);
 	SetFontSize(NormalFontSize);
 	// èüîs
 	switch (human_result_)
 	{
 	case 1:
-		DrawString(0, TitleFontSize, "You Won!", GetColor(255, 0, 0));
+		DrawString(0, TitleFontSize, "You Won!", Color::RESULT_WIN_CHAR);
 		break;
 	case 0:
-		DrawString(0, TitleFontSize, "Draw", GetColor(255, 255, 255));
+		DrawString(0, TitleFontSize, "Draw", Color::RESULT_DRAW_CHAR);
 		break;
 	case -1:
-		DrawString(0, TitleFontSize, "You Lost ...", GetColor(0, 0, 255));
+		DrawString(0, TitleFontSize, "You Lost ...", Color::RESULT_LOSE_CHAR);
 		break;
 	default:
 		break;
 	}
 	// êŒÇÃêî
-	DrawFormatString(0, TitleFontSize + NormalFontSize, GetColor(255, 255, 255), "You: %d Stones", human_stones_);
-	DrawFormatString(0, TitleFontSize + NormalFontSize * 2, GetColor(255, 255, 255), " AI: %d Stones", ai_stones_);
+	DrawFormatString(0, TitleFontSize + NormalFontSize, Color::RESULT_STONES_CHAR, "You: %d Stones", human_stones_);
+	DrawFormatString(0, TitleFontSize + NormalFontSize * 2, Color::RESULT_STONES_CHAR, " AI: %d Stones", ai_stones_);
 
-	DrawString(0, TitleFontSize + NormalFontSize * 4, "Press space key to go to Title", GetColor(255, 255, 255));
-	DrawString(0, TitleFontSize + NormalFontSize * 5, "Press Q to Exit Game", GetColor(255, 255, 255));
+	DrawString(0, TitleFontSize + NormalFontSize * 4, "Press space key to go to Title", Color::RESULT_EXPLAIN_KEY_CHAR);
+	DrawString(0, TitleFontSize + NormalFontSize * 5, "Press Q to Exit Game", Color::RESULT_EXPLAIN_KEY_CHAR);
 }
 
 void ResultScene::Update()

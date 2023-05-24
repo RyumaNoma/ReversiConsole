@@ -23,6 +23,7 @@
     <ClInclude Include="src\Allocator\AllocatorDefine.hpp" />
     <ClInclude Include="src\BitBoard.hpp" />
     <ClInclude Include="src\BitBoardUnitTest.hpp" />
+    <ClInclude Include="src\Color.hpp" />
     <ClInclude Include="src\Debug\Debug.hpp" />
     <ClInclude Include="src\GameAIFunction.hpp" />
     <ClInclude Include="src\GameFunction.hpp" />
