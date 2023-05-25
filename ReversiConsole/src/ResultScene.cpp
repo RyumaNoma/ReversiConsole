@@ -35,7 +35,7 @@ void ResultScene::OnChanged(const std::map<std::string, int>& param)
 	normal_font_size_ = static_cast<int>(height_ * 0.08);
 	const int Mergin = 10;
 	const int ButtonWidth = (width_ - 3 * Mergin) / 2;
-	const int ButtonTop = title_font_size_ + normal_font_size_ * 3 + Mergin;
+	const int ButtonTop = title_font_size_ + normal_font_size_ * 2 + Mergin;
 	const int ButtonBottom = ButtonTop + normal_font_size_ + Mergin;
 
 	title_btn_ = Button(
@@ -64,26 +64,25 @@ void ResultScene::OnChanged(const std::map<std::string, int>& param)
 void ResultScene::Draw() const
 {	
 	SetFontSize(title_font_size_);
-	DrawString(0, 0, "ëŒêÌåãâ ", Color::RESULT_TITLE_CHAR);
-	SetFontSize(normal_font_size_);
 	// èüîs
 	switch (human_result_)
 	{
 	case 1:
-		DrawString(0, title_font_size_, "èüóòÅI", Color::RESULT_WIN_CHAR);
+		DrawString(0, 0, "èüóòÅI", Color::RESULT_WIN_CHAR);
 		break;
 	case 0:
-		DrawString(0, title_font_size_, "à¯Ç´ï™ÇØ", Color::RESULT_DRAW_CHAR);
+		DrawString(0, 0, "à¯Ç´ï™ÇØ", Color::RESULT_DRAW_CHAR);
 		break;
 	case -1:
-		DrawString(0, title_font_size_, "îsñk ...", Color::RESULT_LOSE_CHAR);
+		DrawString(0, 0, "îsñk ...", Color::RESULT_LOSE_CHAR);
 		break;
 	default:
 		break;
 	}
+	SetFontSize(normal_font_size_);
 	// êŒÇÃêî
-	DrawFormatString(0, title_font_size_ + normal_font_size_, Color::RESULT_STONES_CHAR,     "Ç†Ç»ÇΩ: %d êŒ", human_stones_);
-	DrawFormatString(0, title_font_size_ + normal_font_size_ * 2, Color::RESULT_STONES_CHAR, "    AI: %d êŒ", ai_stones_);
+	DrawFormatString(0, title_font_size_, Color::RESULT_STONES_CHAR,     "Ç†Ç»ÇΩ: %d êŒ", human_stones_);
+	DrawFormatString(0, title_font_size_ + normal_font_size_, Color::RESULT_STONES_CHAR, "    AI: %d êŒ", ai_stones_);
 	// É{É^Éì
 	title_btn_.Draw();
 	exit_btn_.Draw();
