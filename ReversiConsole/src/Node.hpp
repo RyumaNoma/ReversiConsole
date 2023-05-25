@@ -49,7 +49,7 @@ public:
 	friend class NodeUnitTest;
 private:
 	static constexpr double C_ = 1.0;
-	static constexpr int EXPAND_THRESHOLD_ = 1;
+	static constexpr int EXPAND_THRESHOLD_ = 5;
 	Point action_;
 	double w_;
 	double ww_;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.hpp"
+#include "Button.hpp"
 
 class ResultScene
 	: public Scene
@@ -14,4 +15,10 @@ private:
 	int human_result_;
 	int human_stones_;
 	int ai_stones_;
+
+	int width_, height_;
+	int title_font_size_;
+	int normal_font_size_;
+	Button title_btn_;
+	Button exit_btn_;
 };

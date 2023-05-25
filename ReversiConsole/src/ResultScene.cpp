@@ -11,6 +11,12 @@ ResultScene::ResultScene(SceneManager* manager)
 	, human_result_(0)
 	, human_stones_(0)
 	, ai_stones_(0)
+	, width_(0)
+	, height_(0)
+	, title_font_size_(0)
+	, normal_font_size_(0)
+	, title_btn_()
+	, exit_btn_()
 	, Scene(manager)
 {
 }
@@ -21,48 +27,75 @@ void ResultScene::OnChanged(const std::map<std::string, int>& param)
 	human_result_ = param.at("HumanResult");
 	human_stones_ = param.at("NumberHumanStones");
 	ai_stones_ = param.at("NumberAIStones");
+
+	auto window_size = GameFunction::GetWindowSize();
+	width_ = window_size.first;
+	height_ = window_size.second;
+	title_font_size_ = static_cast<int>(height_ * 0.1);
+	normal_font_size_ = static_cast<int>(height_ * 0.08);
+	const int Mergin = 10;
+	const int ButtonWidth = (width_ - 3 * Mergin) / 2;
+	const int ButtonTop = title_font_size_ + normal_font_size_ * 3 + Mergin;
+	const int ButtonBottom = ButtonTop + normal_font_size_ + Mergin;
+
+	title_btn_ = Button(
+		Mergin,
+		ButtonTop,
+		Mergin + ButtonWidth,
+		ButtonBottom,
+		"タイトルに戻る",
+		Color::BUTTON_BACKGROUND,
+		Color::BUTTON_CHAR,
+		normal_font_size_
+	);
+
+	exit_btn_ = Button(
+		Mergin * 2 + ButtonWidth,
+		ButtonTop,
+		Mergin * 2 + ButtonWidth * 2,
+		ButtonBottom,
+		"ゲーム終了",
+		Color::BUTTON_BACKGROUND,
+		Color::BUTTON_CHAR,
+		normal_font_size_
+	);
 }
 
 void ResultScene::Draw() const
-{
-	// Press space to title
-	auto [width, height] = GameFunction::GetWindowSize();
-	const int TitleFontSize = static_cast<int>(height * 0.25);
-	const int NormalFontSize = static_cast<int>(height * 0.1);
-	
-	SetFontSize(TitleFontSize);
+{	
+	SetFontSize(title_font_size_);
 	DrawString(0, 0, "Result", Color::RESULT_TITLE_CHAR);
-	SetFontSize(NormalFontSize);
+	SetFontSize(normal_font_size_);
 	// 勝敗
 	switch (human_result_)
 	{
 	case 1:
-		DrawString(0, TitleFontSize, "You Won!", Color::RESULT_WIN_CHAR);
+		DrawString(0, title_font_size_, "You Won!", Color::RESULT_WIN_CHAR);
 		break;
 	case 0:
-		DrawString(0, TitleFontSize, "Draw", Color::RESULT_DRAW_CHAR);
+		DrawString(0, title_font_size_, "Draw", Color::RESULT_DRAW_CHAR);
 		break;
 	case -1:
-		DrawString(0, TitleFontSize, "You Lost ...", Color::RESULT_LOSE_CHAR);
+		DrawString(0, title_font_size_, "You Lost ...", Color::RESULT_LOSE_CHAR);
 		break;
 	default:
 		break;
 	}
 	// 石の数
-	DrawFormatString(0, TitleFontSize + NormalFontSize, Color::RESULT_STONES_CHAR, "You: %d Stones", human_stones_);
-	DrawFormatString(0, TitleFontSize + NormalFontSize * 2, Color::RESULT_STONES_CHAR, " AI: %d Stones", ai_stones_);
-
-	DrawString(0, TitleFontSize + NormalFontSize * 4, "Press space key to go to Title", Color::RESULT_EXPLAIN_KEY_CHAR);
-	DrawString(0, TitleFontSize + NormalFontSize * 5, "Press Q to Exit Game", Color::RESULT_EXPLAIN_KEY_CHAR);
+	DrawFormatString(0, title_font_size_ + normal_font_size_, Color::RESULT_STONES_CHAR, "You: %d Stones", human_stones_);
+	DrawFormatString(0, title_font_size_ + normal_font_size_ * 2, Color::RESULT_STONES_CHAR, " AI: %d Stones", ai_stones_);
+	// ボタン
+	title_btn_.Draw();
+	exit_btn_.Draw();
 }
 
 void ResultScene::Update()
 {
-	if (CheckHitKey(KEY_INPUT_SPACE))
+	if (title_btn_.IsPressed())
 	{
 		manager_->Change("Title", std::map<std::string, int>());
 	}
-	if (CheckHitKey(KEY_INPUT_Q))
+	if (exit_btn_.IsPressed())
 	{
 		manager_->Exit();
 	}

@@ -9,7 +9,6 @@ public:
 	static constexpr unsigned int BACKGROUND_B = 0x00;
 	// タイトル
 	static constexpr unsigned int GAME_TITLE = 0xFFFFFF;
-	static constexpr unsigned int TITLE_EXPLAIN_KEY_CHAR = 0xFFFFFF;
 	static constexpr unsigned int TITLE_BACKGROUND = 0xF4ADA3;
 	// 試合前
 	static constexpr unsigned int BEFORE_MATCH_EFFECT_BAND = 0xFF0000;
@@ -31,4 +30,7 @@ public:
 	static constexpr unsigned int RESULT_LOSE_CHAR = 0x0000FF;
 	static constexpr unsigned int RESULT_STONES_CHAR = 0xFFFFFF;
 	static constexpr unsigned int RESULT_EXPLAIN_KEY_CHAR = 0xFFFFFF;
+	// ボタン
+	static constexpr unsigned int BUTTON_BACKGROUND = 0x0000FF;
+	static constexpr unsigned int BUTTON_CHAR = 0xFFFFFF;
 };
