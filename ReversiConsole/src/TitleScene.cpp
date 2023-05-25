@@ -55,7 +55,6 @@ void TitleScene::OnChanged(const std::map<std::string, int>& param)
 
 void TitleScene::Draw() const
 {
-	DrawBox(0, 0, width_, height_, Color::TITLE_BACKGROUND, true);
 	SetFontSize(title_font_size_);
 	DrawString(0, 0, "Reversi", Color::GAME_TITLE);
 	SetFontSize(normal_font_size_);

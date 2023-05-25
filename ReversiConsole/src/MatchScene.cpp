@@ -210,7 +210,7 @@ void MatchScene::DrawBeforeMatch() const
 	DrawBox(0, BandTop, width, BandBottom, Color::BEFORE_MATCH_EFFECT_BAND, true);
 	// TODO: ’†‰›‚¼‚ë‚¦
 	SetFontSize(FontSize);
-	std::string human_side_str = (human_side_) ? "Œãè(”’)" : "æè(•)";
+	std::string human_side_str = (human_side_) ? "Œãè" : "æè";
 	DrawString(0, BandTop + FontSize, "‘ÎíŠJn", Color::BEFORE_MATCH_EFFECT_CHAR);
 	DrawString(0, BandTop + FontSize * 2, std::string("‚ ‚È‚½‚Í@" + human_side_str).c_str(), Color::BEFORE_MATCH_EFFECT_CHAR);
 }
