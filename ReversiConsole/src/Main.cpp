@@ -21,8 +21,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Debug::Reset();
 
 	// DxLibの実行時初期設定
-	// Windowモード
-	ChangeWindowMode(true);
 	// タイトル
 	SetMainWindowText("Reversi");
 	// 初期画面サイズをデスクトップサイズに合わせる
@@ -34,7 +32,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		return -1;
 	}
-
+	
+	//int num = GetDisplayModeNum();
+	//DISPLAYMODEDATA dmm = GetDisplayMode(0);
+	//GameFunction::ChangeToWindowMode(dmm.Width, dmm.Height);
 	// カーソルの表示設定：オン
 	SetMouseDispFlag(true);
 
