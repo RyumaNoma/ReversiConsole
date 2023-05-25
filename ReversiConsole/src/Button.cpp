@@ -44,3 +44,16 @@ bool Button::IsPressed() const
 	const bool IsInsideButton = (x1_ <= mouse_x && mouse_x <= x2_ && y1_ <= mouse_y && mouse_y <= y2_);
 	return (Clicked && IsInsideButton);
 }
+
+Button& Button::operator=(const Button& button)
+{
+	x1_ = button.x1_;
+	y1_ = button.y1_;
+	x2_ = button.x2_;
+	y2_ = button.y2_;
+	text_ = button.text_;
+	background_color_ = button.background_color_;
+	text_color_ = button.text_color_;
+	font_size_ = button.font_size_;
+	return *this;
+}
