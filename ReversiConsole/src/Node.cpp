@@ -87,11 +87,17 @@ void Node::Expand(const BitBoard& board, Allocator<Node>& allocator)
 
 Node* Node::SelectChildren() const
 {
+	int sum_n = 0;
+	for (Node* child : children_)
+	{
+		sum_n += child->n_;
+	}
+
 	Node* best_child = nullptr;
 	double best_value = -1;
 	for (Node* child : children_)
 	{
-		double value = child->UCB1_Tuned(n_);
+		double value = child->UCB1_Tuned(sum_n);
 		if (value > best_value)
 		{
 			best_value = value;
