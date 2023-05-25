@@ -49,6 +49,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	Timer t;
 	int loop = 0;
+	SetDrawScreen(DX_SCREEN_BACK);
 	while (manager && ProcessMessage() == 0)
 	{
 		t.Reset();

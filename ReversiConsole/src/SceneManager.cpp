@@ -38,6 +38,7 @@ bool SceneManager::Update()
 			changed_ = false;
 		}
 		now_scene_->Draw();
+		ScreenFlip();
 		now_scene_->Update();
 		return true;
 	}
