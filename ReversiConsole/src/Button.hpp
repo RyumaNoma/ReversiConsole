@@ -4,6 +4,7 @@
 class Button
 {
 public:
+	Button();
 	Button(int x1, int y1, int x2, int y2, std::string text, unsigned int background_color, unsigned int char_color, int font_size);
 	Button(const Button&) = default;
 	~Button() = default;

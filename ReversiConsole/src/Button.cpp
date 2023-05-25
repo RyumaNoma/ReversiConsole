@@ -3,6 +3,18 @@
 // ”Ä—p
 #include "GameFunction.hpp"
 
+Button::Button()
+	: x1_(0)
+	, y1_(0)
+	, x2_(0)
+	, y2_(0)
+	, text_("")
+	, background_color_(0)
+	, text_color_(0)
+	, font_size_(0)
+{
+}
+
 Button::Button(int x1, int y1, int x2, int y2, std::string text, unsigned int background_color, unsigned int text_color, int font_size)
 	: x1_(x1)
 	, y1_(y1)
