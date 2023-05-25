@@ -2,6 +2,7 @@
 #include "Node.hpp"
 // ビットボード関連
 #include "BitBoard.hpp"
+#include "Debug/Debug.hpp"
 
 MCTS::MCTS()
 	: allocator_(100000)
@@ -39,7 +40,7 @@ Point MCTS::Act(const BitBoard& board)
 		root.Evaluate(copy, allocator_, random_);
 		++count;
 	}
-	// std::cout << "count:" << count << std::endl;
+	Debug::Print("count:", count);
 	return root.SelectBestAction();
 }
 
