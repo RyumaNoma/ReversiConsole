@@ -24,6 +24,7 @@ public:
 	static constexpr unsigned int PASS_EFFECT_BAND = 0xF4ADA3;
 	static constexpr unsigned int PASS_EFFECT_CHAR = BLACK;
 	static constexpr unsigned int SWAP_EFFECT = 0xF4ADA3;
+	static constexpr unsigned int TELL_TURN_CHAR = WHITE;
 	// ”Õ–Ê
 	static constexpr unsigned int BOARD_BACKGROUND = WHITE;
 	static constexpr unsigned int BOARD_LINE = BLACK;

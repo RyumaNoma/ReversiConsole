@@ -223,7 +223,16 @@ void MatchScene::DrawThink() const
 	const int BoardSize = static_cast<int>(height * 0.8);
 	const int CellSize = BoardSize / 8;
 	const int EffectCircleRound = CellSize / 6;
+	const int FontSize = static_cast<int>(height * 0.09);
 
+	//どちらのターンか
+	SetFontSize(FontSize);
+	const std::string PlayerName = ((turn_ % 2 == human_side_) ? "あなた" : "AI");
+	const unsigned int PlayerColor = ((turn_ % 2) ? Color::SECOND_PLAYER_STONE : Color::FIRST_PLAYER_STONE);
+	const int StrWidth = GetDrawStringWidth(PlayerName.c_str(), -1);
+	DrawString(Mergin, 0, PlayerName.c_str(), PlayerColor);
+	DrawString(Mergin + StrWidth + 10, 0, "のターン", Color::TELL_TURN_CHAR);
+	// 盤面の表示
 	DrawBoard(width, height);
 	// 合法手の表示
 	std::vector<Point> legal_actions = board_.LegalActions();
@@ -253,9 +262,12 @@ void MatchScene::DrawPlayAnimation() const
 		const int Right = width;
 		const int Top = height / 3;
 		const int Bottom = height / 3 * 2;
+		const int FontSize = static_cast<int>(height * 0.3);
+		const auto [StrLeft, StrTop] = GameFunction::GetLeftTopToAlignCenter(Left, Top, Right, Bottom, "PASS", FontSize);
+		
 		DrawBox(Left, Top, Right, Bottom, Color::PASS_EFFECT_BAND, 1);
-		SetFontSize(300);
-		DrawString(Left, Top, "PASS", Color::PASS_EFFECT_CHAR);
+		SetFontSize(FontSize);
+		DrawString(StrLeft, StrTop, "PASS", Color::PASS_EFFECT_CHAR);
 	}
 	else
 	{
