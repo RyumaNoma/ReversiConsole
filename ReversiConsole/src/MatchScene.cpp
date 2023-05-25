@@ -61,7 +61,6 @@ void MatchScene::Draw() const
 
 void MatchScene::Update()
 {
-	// TODO: プレイヤーのマルチスレッド化
 	switch (state_)
 	{
 	case MatchState::BeforeMatch:
@@ -208,11 +207,12 @@ void MatchScene::DrawBeforeMatch() const
 
 	DrawBoard(width, height);
 	DrawBox(0, BandTop, width, BandBottom, Color::BEFORE_MATCH_EFFECT_BAND, true);
-	// TODO: 中央ぞろえ
 	SetFontSize(FontSize);
 	std::string human_side_str = (human_side_) ? "後手" : "先手";
+	unsigned int human_side_color = (human_side_) ? Color::SECOND_PLAYER_STONE : Color::FIRST_PLAYER_STONE;
 	DrawString(0, BandTop + FontSize, "対戦開始", Color::BEFORE_MATCH_EFFECT_CHAR);
-	DrawString(0, BandTop + FontSize * 2, std::string("あなたは　" + human_side_str).c_str(), Color::BEFORE_MATCH_EFFECT_CHAR);
+	DrawString(0, BandTop + FontSize * 2, "あなたは　", Color::BEFORE_MATCH_EFFECT_CHAR);
+	DrawString(GetDrawStringWidth("あなたは　", -1), BandTop + FontSize * 2, human_side_str.c_str(), human_side_color);
 }
 
 void MatchScene::DrawThink() const
@@ -249,7 +249,6 @@ void MatchScene::DrawPlayAnimation() const
 
 	if (is_pass_)
 	{
-		// TODO: 中央ぞろえ
 		const int Left = 0;
 		const int Right = width;
 		const int Top = height / 3;
@@ -282,7 +281,6 @@ void MatchScene::DrawPlayAnimation() const
 	}
 }
 
-// TODO: 縦画面に対応(min(width, height))
 void MatchScene::DrawBoard(int window_width, int window_height) const
 {
 	const int Mergin = static_cast<int>(window_height * 0.1);

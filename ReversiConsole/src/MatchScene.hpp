@@ -4,8 +4,6 @@
 class Player;
 class SceneManager;
 
-// TODO: とにかくMatchSceneクラスを完成させる
-// TODO: コメント整備
 class MatchScene
 	: public Scene
 {

@@ -38,7 +38,6 @@ bool SceneManager::Update()
 	if (scenes_.count(now_scene_))
 	{
 		Scene* scene = scenes_.at(now_scene_);
-		// TODO: マルチスレッド化してロード画面の実装
 		if (changed_)
 		{
 			scene->OnChanged(game_data_);
