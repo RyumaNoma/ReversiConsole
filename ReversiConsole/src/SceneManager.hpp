@@ -63,7 +63,7 @@ public:
 private:
 	std::map<std::string, Scene*> scenes_;
 	std::string startup_scene_;
-	std::string now_scene_;//TODO: Scene*Œ^‚É•ÏX‚·‚é
+	Scene* now_scene_;
 	bool changed_;
 	std::map<std::string, int> game_data_;
 	bool valid_exec_;

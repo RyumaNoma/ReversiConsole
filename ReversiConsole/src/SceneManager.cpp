@@ -4,7 +4,7 @@
 SceneManager::SceneManager()
 	: scenes_()
 	, startup_scene_()
-	, now_scene_()
+	, now_scene_(nullptr)
 	, game_data_()
 	, changed_(true)
 	, valid_exec_(true)
@@ -21,30 +21,24 @@ bool SceneManager::Update()
 	{
 		frame_time_queue_.pop();
 	}
-	printfDx("%d\n", static_cast<int>(frame_time_queue_.size()));
+	//printfDx("%d\n", static_cast<int>(frame_time_queue_.size()));
 
-	if (now_scene_ == "")
+	if (now_scene_ == nullptr)
 	{
-		if (startup_scene_ == "")
-		{
-			return false;
-		}
-		else
-		{
-			now_scene_ = startup_scene_;
-		}
+		if (startup_scene_ == "") return false;
+		if (!scenes_.count(startup_scene_)) return false;
+		now_scene_ = scenes_.at(startup_scene_);
 	}
 
-	if (scenes_.count(now_scene_))
+	if (now_scene_)
 	{
-		Scene* scene = scenes_.at(now_scene_);
 		if (changed_)
 		{
-			scene->OnChanged(game_data_);
+			now_scene_->OnChanged(game_data_);
 			changed_ = false;
 		}
-		scene->Draw();
-		scene->Update();
+		now_scene_->Draw();
+		now_scene_->Update();
 		return true;
 	}
 	return false;
@@ -75,7 +69,7 @@ bool SceneManager::Change(std::string scene_name, const std::map<std::string, in
 	if (scenes_.count(scene_name))
 	{
 		game_data_ = tell_game_data;
-		now_scene_ = scene_name;
+		now_scene_ = scenes_.at(scene_name);
 		changed_ = true;
 		return true;
 	}
