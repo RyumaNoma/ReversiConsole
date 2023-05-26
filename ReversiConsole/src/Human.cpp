@@ -14,7 +14,7 @@ void Human::Init()
 Point Human::Act(const BitBoard& board)
 {
 	// demo
-	return LeftUp(board);
+	//return LeftUp(board);
 
 	// ‰æ–ÊƒTƒCƒY‚Ìæ“¾
 	auto [width, height] = GameFunction::GetWindowSize();
