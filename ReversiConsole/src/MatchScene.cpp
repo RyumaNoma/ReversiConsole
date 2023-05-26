@@ -32,11 +32,11 @@ void MatchScene::OnChanged(const std::map<std::string, int>& param)
 	human_side_ = time(NULL) % 2;
 	if (human_side_ == 0)
 	{
-		SetPlayers(new Human(), new MCTS(1000000, 1000));
+		SetPlayers(new Human(), new MCTS(10000000, 1000));
 	}
 	else
 	{
-		SetPlayers(new MCTS(1000000, 1000), new Human());
+		SetPlayers(new MCTS(10000000, 1000), new Human());
 	}
 	Init();
 }
