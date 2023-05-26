@@ -91,6 +91,11 @@ void MatchScene::UpdateThink()
 {
 	if (board_.IsFinish())
 	{
+		//Debug::Print("Human:", ((human_side_) ? "Œãè" : "æè"));
+		//Debug::Print(board_);
+		//Debug::Print("Human Stones:", HumanStones());
+		//Debug::Print("AI Stones:", AIStones());
+
 		std::map<std::string, int> game_data;
 		game_data["Level"] = 1;// TODO: Level‘I‘ğ‹@”\
 		game_data["NumberHumanStones"] = HumanStones();

@@ -40,7 +40,7 @@ Point MCTS::Act(const BitBoard& board)
 		root.Evaluate(copy, allocator_, random_);
 		++count;
 	}
-	Debug::Print("count:", count);
+	//Debug::Print("count:", count);
 	return root.SelectBestAction();
 }
 

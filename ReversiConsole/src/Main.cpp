@@ -17,8 +17,8 @@
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	Debug::FILENAME = "./Debug.txt";
-	Debug::Reset();
+	//Debug::FILENAME = "./Debug.txt";
+	//Debug::Reset();
 
 	// DxLibの実行時初期設定
 	// タイトル
