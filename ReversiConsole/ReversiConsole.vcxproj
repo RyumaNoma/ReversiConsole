@@ -64,6 +64,14 @@
     <ClCompile Include="src\Timer\Timer.cpp" />
     <ClCompile Include="src\TitleScene.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\ScreenShot\Match.png" />
+    <Image Include="..\ScreenShot\Result.png" />
+    <Image Include="..\ScreenShot\Title.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
